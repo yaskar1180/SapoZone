@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void login(View view) {
         // Create an intent for the second activity
         Intent intent = new Intent(this, MenuActivity.class);

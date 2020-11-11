@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <item android:title="Utilisateurs">
+        <menu>
+            <item
+                android:id="@+id/nav_subscription"
+                android:title=" Mon Compte" />
+        </menu>
+    </item>
+
+    <item android:title="Communications">
+        <menu>
+            <item
+                android:id="@+id/nav_messages"
+                android:title="Mes conversations" />
+
+            <item
+                android:id="@+id/nav_request"
+                android:title="Mes demandes" />
+
+        </menu>
+    </item>
+
+</menu>
