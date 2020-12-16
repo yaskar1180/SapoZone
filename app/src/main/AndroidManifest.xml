@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sapozone">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,8 @@
         android:theme="@style/Theme.SapoZone">
         <activity android:name=".StoreActivity"></activity>
         <activity
-            android:name=".MenuActivity">
+            android:name=".MenuActivity"
+            tools:ignore="ExtraText">
             android:label="MenuActivity"
             android:theme="@style/Theme.SapoZone.NoActionBar" />
         </activity>
@@ -31,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
