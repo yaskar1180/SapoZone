@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -58,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_movie, R.id.nav_renewal,
-                R.id.nav_subscription, R.id.nav_consumable, R.id.nav_ticket)
+                R.id.nav_account, R.id.nav_consumable, R.id.nav_ticket)
                 .setDrawerLayout(drawer)
                 .build();
     }
@@ -84,6 +85,11 @@ public class MenuActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
         editor.apply();
+        startActivity(intent);
+    }
+
+    public void myAccount(MenuItem view){
+        Intent intent = new Intent(this, MyAccountActivity.class);
         startActivity(intent);
     }
 

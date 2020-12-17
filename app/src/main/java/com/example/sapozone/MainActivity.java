@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
@@ -44,33 +45,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.db = new Database(this);
+        Intent intent = new Intent(this, MenuActivity.class);
 
 
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if(!sharedPref.getString("username", "").trim().equals("")) {
-            if(!sharedPref.getString("password", "").trim().equals("")){
-                Intent intent = new Intent(this, MenuActivity.class);
-
-                ArrayList<Account> accounts = (ArrayList<Account>)db.getAllRows(Database.ACCOUNT_TABLE);
-                int connect = 0;
-
-                for(Iterator<Account> it = accounts.iterator(); it.hasNext();){
-
-                    Account current =it.next();
-                    System.out.println(current.getUsername());
-                    System.out.println(sharedPref.getString("username",""));
-
-                    if(current.getUsername().equalsIgnoreCase(sharedPref.getString("username",""))){
-                        System.out.println("Testsee");
-
-                        if(current.getPassword().equalsIgnoreCase(sharedPref.getString("password",""))){
-                            System.out.println("Testee");
-                            connect = 1;
-                        }
-                    }
-                }
-                if(connect==1){
+       int id = 0;
+        System.out.println(sharedPref.getInt("idUser",id));
+                if(sharedPref.getInt("idUser",id)!=0){
                     // Kill this activity
                     finish();
 
@@ -81,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
-        }
 
-    }
+
+
 
 
 
@@ -169,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                                 System.out.println("somthing didnt work");
 
                             }
+                            Log.d("id", "this User ID is: "+id);
                             if (id!=0) {
                                 editor.putInt("idUser", id);
                                 editor.apply();
