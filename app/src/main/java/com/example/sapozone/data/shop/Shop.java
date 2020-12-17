@@ -11,7 +11,10 @@ public class Shop {
     private String name;
 
 
-    private HashMap<String, Product> productToSelled = new HashMap<String, Product>();
+
+    private HashMap<String, Product> productToSell = new HashMap<String, Product>();
+
+
 
 
 

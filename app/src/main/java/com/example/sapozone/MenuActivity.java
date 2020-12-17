@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.sapozone.viewHolders.ShopHolder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,6 +24,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -30,6 +35,18 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private SharedPreferences sharedPref = null;
+
+
+    private ListView displayedShops;
+
+
+    private String[] prenoms = new String[]{
+            "Antoine", "Benoit", "Cyril", "David", "Eloise", "Florent",
+            "Gerard", "Hugo", "Ingrid", "Jonathan", "Kevin", "Logan",
+            "Mathieu", "Noemie", "Olivia", "Philippe", "Quentin", "Romain",
+            "Sophie", "Tristan", "Ulric", "Vincent", "Willy", "Xavier",
+            "Yann", "Zoé"
+    };
 
 
     @Override
@@ -40,9 +57,18 @@ public class MenuActivity extends AppCompatActivity {
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         setContentView(R.layout.activity_menu);
 
+
+        this.displayedShops = findViewById(R.id.displayedShops);
+
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MenuActivity.this,
+                android.R.layout.simple_list_item_1, prenoms);
+        displayedShops.setAdapter(adapter);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.search);
+        FloatingActionButton fab = findViewById(R.id.searchFloatingButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +112,50 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    View cellule = ...; //nous verrons plus tard comment la générer
+
+    ShopHolder viewHolder = (ShopHolder) cellule.getTag();
+    //comme nos vues sont réutilisées, notre cellule possède déjà un ViewHolder
+    if(viewHolder == null){
+        //si elle n'avait pas encore de ViewHolder
+        viewHolder = new ShopHolder();
+
+        //récupérer nos sous vues
+        viewHolder.name = (TextView)  cellule.findViewById(R.id.name);
+        viewHolder.postalCode   = (TextView)  cellule.findViewById(R.id.postalCode);
+        viewHolder.logo = (ImageView) cellule.findViewById(R.id.logo);
+
+        //puis on sauvegarde le mini-controlleur dans la vue
+        cellule.setTag(viewHolder);
+    }
+
+
+    //convertView est notre vue recyclée
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        //Android nous fournit un convertView null lorsqu'il nous demande de la créer
+        //dans le cas contraire, cela veux dire qu'il nous fournit une vue recyclée
+        if(convertView == null){
+            //Nous récupérons notre row_tweet via un LayoutInflater,
+            //qui va charger un layout xml dans un objet View
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_tweet,parent, false);
+        }
+
+        TweetViewHolder viewHolder = (TweetViewHolder) convertView.getTag();
+        if(viewHolder == null){
+            viewHolder = new TweetViewHolder();
+            viewHolder.pseudo = (TextView) convertView.findViewById(R.id.pseudo);
+            viewHolder.text = (TextView) convertView.findViewById(R.id.text);
+            viewHolder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
+            convertView.setTag(viewHolder);
+        }
+
+        //nous renvoyons notre vue à l'adapter, afin qu'il l'affiche
+        //et qu'il puisse la mettre à recycler lorsqu'elle sera sortie de l'écran
+        return convertView;
+    }
 
 
 }

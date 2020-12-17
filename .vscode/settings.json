@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "heroku_29453f46e586f43heroku_29453f46e586f43",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "SapoZone",
+            "password": "efe40168efe40168",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "b88a9ee1abb5d1b88a9ee1abb5d1",
+            "username": "b88a9ee1abb5d1b88a9ee1abb5d1"
+        }
+    ]
+}
