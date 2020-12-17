@@ -11,7 +11,7 @@
                 android:title="Mon Compte" />
             <item
                 android:id="@+id/my_shop"
-                android:title="Mes articles"
+                android:title="Mon magasin"
                 android:onClick="onStores" />
 
         </menu>
