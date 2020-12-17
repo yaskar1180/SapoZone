@@ -40,59 +40,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.db = new Database(this);
+        Intent intent = new Intent(this, MenuActivity.class);
 
 
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        if(!sharedPref.getString("username", "").trim().equals("")) {
-            if(!sharedPref.getString("password", "").trim().equals("")){
-                Intent intent = new Intent(this, MenuActivity.class);
+        int id = 0;
+        System.out.println(sharedPref.getInt("idUser",id));
+        if(sharedPref.getInt("idUser",id)!=0){
+            // Kill this activity
+            finish();
 
-                ArrayList<Account> accounts = (ArrayList<Account>)db.getAllRows(Database.ACCOUNT_TABLE);
-                int connect = 0;
+            // Start the activity
+            startActivity(intent);
 
-                for(Iterator<Account> it = accounts.iterator(); it.hasNext();){
-
-                    Account current =it.next();
-                    System.out.println(current.getUsername());
-                    System.out.println(sharedPref.getString("username",""));
-
-                    if(current.getUsername().equalsIgnoreCase(sharedPref.getString("username",""))){
-                        System.out.println("Testsee");
-
-                        if(current.getPassword().equalsIgnoreCase(sharedPref.getString("password",""))){
-                            System.out.println("Testee");
-                            connect = 1;
-                        }
-                    }
-                }
-                if(connect==1){
-                    // Kill this activity
-                    finish();
-
-                    // Start the activity
-                    startActivity(intent);
-
-                }
-
-
-            }
         }
 
-    }
-
-
-
-    public void register(View view) {
-        // Create an intent for the register activity
-        Intent intent = new Intent(this, RegisterActivity.class);
-
-        // Start the activity
-        startActivity(intent);
 
     }
 
