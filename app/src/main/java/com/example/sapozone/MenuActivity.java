@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.sapozone.viewHolders.ShopHolder;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.sapozone.data.shop.Shop;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,9 +28,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -113,50 +120,58 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    View cellule = ...; //nous verrons plus tard comment la générer
+    private List<Shop> getAllShops(){
+        List<Shop> shops = new ArrayList<Shop>();
 
-    ShopHolder viewHolder = (ShopHolder) cellule.getTag();
-    //comme nos vues sont réutilisées, notre cellule possède déjà un ViewHolder
-    if(viewHolder == null){
-        //si elle n'avait pas encore de ViewHolder
-        viewHolder = new ShopHolder();
 
-        //récupérer nos sous vues
-        viewHolder.name = (TextView)  cellule.findViewById(R.id.name);
-        viewHolder.postalCode   = (TextView)  cellule.findViewById(R.id.postalCode);
-        viewHolder.logo = (ImageView) cellule.findViewById(R.id.logo);
+        AndroidNetworking.post("https://api-sapozone.herokuapp.com/sign_in/")
+                .addJSONObjectBody(jsonObject)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener(){
 
-        //puis on sauvegarde le mini-controlleur dans la vue
-        cellule.setTag(viewHolder);
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response.toString());
+                        sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        int id=0;
+                        try {
+                            id=response.getInt("id");
+                        }
+                        catch (JSONException e){
+                            System.out.println("somthing didnt work");
+
+                        }
+                        if (id!=0) {
+                            editor.putInt("idUser", id);
+                            editor.apply();
+                            startActivity(intent);
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        System.out.println( error.getMessage() );
+                        System.out.println( error.getErrorCode() );
+                        System.out.println( error.getCause() );
+                        usernameET.setError( "Error login" );
+                        passwordET.setError( "Error login" );
+                    }
+                });
+
+
+
+
+
+
+
+
+        return shops;
     }
-
-
-    //convertView est notre vue recyclée
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        //Android nous fournit un convertView null lorsqu'il nous demande de la créer
-        //dans le cas contraire, cela veux dire qu'il nous fournit une vue recyclée
-        if(convertView == null){
-            //Nous récupérons notre row_tweet via un LayoutInflater,
-            //qui va charger un layout xml dans un objet View
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_tweet,parent, false);
-        }
-
-        TweetViewHolder viewHolder = (TweetViewHolder) convertView.getTag();
-        if(viewHolder == null){
-            viewHolder = new TweetViewHolder();
-            viewHolder.pseudo = (TextView) convertView.findViewById(R.id.pseudo);
-            viewHolder.text = (TextView) convertView.findViewById(R.id.text);
-            viewHolder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
-            convertView.setTag(viewHolder);
-        }
-
-        //nous renvoyons notre vue à l'adapter, afin qu'il l'affiche
-        //et qu'il puisse la mettre à recycler lorsqu'elle sera sortie de l'écran
-        return convertView;
-    }
-
 
 }
 
