@@ -42,7 +42,7 @@ public class ShopAdapter extends ArrayAdapter<Shop> {
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.name.setText(shop.getName());
-        viewHolder.postalCode.setText(shop.getPostalCode());
+        viewHolder.postalCode.setText(shop.getPostalCode()+"");
         viewHolder.logo.setImageDrawable(new ColorDrawable(shop.getLogo()));
 
         return convertView;

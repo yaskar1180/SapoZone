@@ -1,5 +1,6 @@
 package com.example.sapozone.data.shop;
 
+import android.graphics.Color;
 import android.widget.ImageView;
 
 import java.util.HashMap;
@@ -8,23 +9,29 @@ import com.example.sapozone.data.items.Product;
 public class Shop {
 
 
-    private String id;
+    private int id;
     private String userId;
     private String name;
 
     private int postalCode;
 
-    private int logo;
+    private int logo = Color.GRAY;
 
     private HashMap<String, Product> productToSell = new HashMap<String, Product>();
 
+
+    public Shop(int id, String name, int postalCode){
+        this.id = id;
+        this.name = name;
+        this.postalCode = postalCode;
+    }
 
     public String getName(){
         return name;
     }
 
 
-    public String getId(){
+    public int getId(){
         return id;
     }
 
