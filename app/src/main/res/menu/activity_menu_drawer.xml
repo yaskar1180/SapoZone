@@ -8,9 +8,15 @@
         <menu>
             <item
                 android:id="@+id/nav_subscription"
-                android:title=" Mon Compte" />
+                android:title="Mon Compte" />
+            <item
+                android:id="@+id/my_shop"
+                android:title="Mon magasin"
+                android:onClick="onStores" />
+
         </menu>
     </item>
+
 
     <item android:title="Communications">
         <menu>

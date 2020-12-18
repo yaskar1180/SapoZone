@@ -17,8 +17,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.util.Log;
+
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -156,6 +158,15 @@ public class MenuActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
         startActivity(intent);
+    }
+
+    public boolean onStores(MenuItem item) {
+
+        Intent intent = new Intent(this, StoreActivity.class);
+        // Start the activity
+        startActivity(intent);
+        return true;
+
     }
 
 
