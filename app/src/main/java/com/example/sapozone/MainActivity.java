@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private com.example.sapozone.Database db;
 
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         AndroidNetworking.initialize(getApplicationContext());
@@ -61,6 +60,17 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+    }
+
+
+
+    public void register(View view) {
+        // Create an intent for the register activity
+        Intent intent = new Intent(this, RegisterActivity.class);
+
+        // Start the activity
+        startActivity(intent);
 
     }
 
