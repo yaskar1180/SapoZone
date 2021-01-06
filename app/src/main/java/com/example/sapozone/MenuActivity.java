@@ -189,7 +189,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
     public void disconnect(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+     Intent intent = new Intent(this, MainActivity.class);
 
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.clear();
@@ -197,12 +197,19 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public boolean onStores(MenuItem item) {
 
-        Intent intent = new Intent(this, StoreActivity.class);
+        Intent intent = new Intent(this, MenuShopActivity.class);
         // Start the activity
         startActivity(intent);
         return true;
+
+    }
+    public void myAccount(MenuItem item){
+        Intent intent = new Intent(this, MyAccountActivity.class);
+        startActivity(intent);
 
     }
 
@@ -261,6 +268,9 @@ public class MenuActivity extends AppCompatActivity {
         System.out.println(this.shops);
 
     }
+
+
+
 
 
 

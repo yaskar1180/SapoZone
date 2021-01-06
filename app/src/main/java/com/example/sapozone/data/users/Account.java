@@ -15,10 +15,24 @@ public class  Account {
     private String username;
     private String password;
     private String email;
-    private String number;
-    private Location location;
+    private String phonenumber;
+    private String firstname;
+    private String lastname;
+    private String streetname;
+    private String streetnumber;
+    private String postal_code;
+    private String city;
+    private String bio;
+    private String id;
 
-    //--------------------------------   Social
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+//--------------------------------   Social
 
     /**
      * Stock the rate gets by the others users
@@ -72,20 +86,99 @@ public class  Account {
     }
 
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostal_code() {
+        return postal_code;
+    }
+
+    public void setPostal_code(String postal_code) {
+        this.postal_code = postal_code;
+    }
+
+    public String getStreetnumber() {
+        return streetnumber;
+    }
+
+    public void setStreetnumber(String streetnumber) {
+        this.streetnumber = streetnumber;
+    }
+
+    public String getStreetname() {
+        return streetname;
+    }
+
+    public void setStreetname(String streetname) {
+        this.streetname = streetname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     /**
      *
      * @param username
      * @param password
      * @param email
-     * @param number
-     * @param location
+     * @param phonenumber
+     * @param firstname
+     * @param lastname
+     * @param streetname
+     * @param streetnumber
+     * @param postal_code
+     * @param city
+     * @param bio
      */
-    public Account(String username, String password, String email, String number, Location location) {
+    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.number = number;
-        this.location = location;
+        this.phonenumber = phonenumber;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.streetname = streetname;
+        this.streetnumber = streetnumber;
+        this.postal_code = postal_code;
+        this.city= city;
+        this.bio= bio;
+        this.id=id;
+
+
     }
 
 
@@ -114,20 +207,14 @@ public class  Account {
     }
 
     public String getNumber() {
-        return number;
+        return phonenumber;
     }
 
     public void setNumber(String number) {
-        this.number = number;
+        this.phonenumber = number;
     }
 
-    public Location getLocation() {
-        return location;
-    }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     public ArrayList<Integer> getRating() {
         return rating;

@@ -41,7 +41,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_ACCOUNT_TABLE = "CREATE TABLE ACCOUNT(username TEXT PRIMARY KEY, password TEXT, email TEXT)";
+        String CREATE_ACCOUNT_TABLE = "CREATE TABLE ACCOUNT(username TEXT PRIMARY KEY,id TEXT, password TEXT, email TEXT,firstname TEXT,lastname Text,streetnumber TEXT, streetname TEXT, postalcode TEXT, city TEXT, phonenumber TEXT, bio TEXT)";
 
         db.execSQL(CREATE_ACCOUNT_TABLE);
 
@@ -70,6 +70,7 @@ public class Database extends SQLiteOpenHelper {
         for (Map.Entry<Object, Object> entry : map.entrySet()) {
             if (entry.getValue() instanceof String) {
                 values.put((String) entry.getKey(), (String) entry.getValue());
+                System.out.println("ajout de la chaine de charactere correspondant a "+entry.getKey()+" : "+entry.getValue());
 
             } else if (entry.getValue() instanceof Float) {
                 values.put((String) entry.getKey(), (Float) entry.getValue());
@@ -104,7 +105,11 @@ public class Database extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             if(table.equalsIgnoreCase(ACCOUNT_TABLE)){
                 do {
-                    Account account = new Account(cursor.getString(0),cursor.getString(1), cursor.getString(2));
+
+
+                    //(username TEXT PRIMARY KEY,id TEXT, password TEXT, email TEXT,firstname TEXT,lastname Text,streetnumber TEXT, streetname TEXT, postalcode TEXT, city TEXT, phonenumber TEXT, bio TEXT)
+                    //    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
+                    Account account = new Account(cursor.getString(0),cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(10),cursor.getString(4),cursor.getString(5),cursor.getString(7),cursor.getString(6),cursor.getString(8),cursor.getString(9),cursor.getString(11));
 
                     // Add row to list
                     l.add(account);
