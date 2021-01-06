@@ -30,4 +30,18 @@ public class MenuShopActivity extends AppCompatActivity {
         // Start the activity
         startActivity(intent);
     }
+
+    public void getTotalInfoShop(View view) {
+
+        Intent intent = new Intent(this,MenuActivity.class);
+        // Start the activity
+        startActivity(intent);
+    }
+
+    public void manageShop(View view) {
+        Intent intent = new Intent(this, MyStoreManagement.class);
+        startActivity(intent);
+    }
+
+
 }
