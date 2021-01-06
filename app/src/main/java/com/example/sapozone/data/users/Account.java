@@ -24,6 +24,7 @@ public class  Account {
     private String city;
     private String bio;
     private String id;
+    private String pp;
 
     public String getId() {
         return id;
@@ -177,6 +178,7 @@ public class  Account {
         this.city= city;
         this.bio= bio;
         this.id=id;
+        this.pp=pp;
 
 
     }
