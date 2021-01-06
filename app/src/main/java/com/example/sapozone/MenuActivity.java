@@ -5,12 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.ANRequest;
-import com.androidnetworking.common.ANResponse;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.android.volley.toolbox.StringRequest;
+
 import com.example.sapozone.adapters.ShopAdapter;
 import com.example.sapozone.data.shop.Shop;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,14 +36,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Response;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -56,6 +60,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref = null;
 
+    List<Shop> shops = new ArrayList<Shop>();
 
     private ListView displayedShops;
 
@@ -72,43 +77,64 @@ public class MenuActivity extends AppCompatActivity {
         this.displayedShops = findViewById(R.id.displayedShops);
 
 
-        List<Shop> shops = new ArrayList<Shop>();
 
-        Shop s1 = new Shop(1, "Test Store",92000);
-        Shop s2 = new Shop(2, "backet Store",75001);
-        Shop s3 = new Shop(3, "bag Store",94000);
-        Shop s4 = new Shop(4, "custizi Store",91000);
-        Shop s5 = new Shop(1, "EREN Store",92000);
-        Shop s6 = new Shop(2, "carrefour Store",75015);
-        Shop s7 = new Shop(3, "Kozi Store",94420);
-        Shop s8 = new Shop(4, "Nike Store",95100);
-        Shop s11 = new Shop(1, "Adidas Store",92000);
-        Shop s21 = new Shop(2, "Pron Store",75001);
-        Shop s31 = new Shop(3, "nairobi Store",94000);
-        Shop s41 = new Shop(4, "Test Store",91000);
+        String url = "https://api-sapozone.herokuapp.com/stores/";
 
-        shops.add(s1);
-        shops.add(s2);
-        shops.add(s3);
-        shops.add(s4);
-        shops.add(s11);
-        shops.add(s21);
-        shops.add(s31);
-        shops.add(s41);
-        shops.add(s5);
-        shops.add(s6);
-        shops.add(s7);
-        shops.add(s8);
+        Shop s1 = new Shop(1, "Test",1);
+        this.shops.add(s1);
 
 
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response is: "+ response);
 
 
-        getAllShops(shops);
+                        try {
+
+                            System.out.println("ON EST DEDANS");
+
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject test = jsonArray.getJSONObject(i);
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                shops.add(shop);
+                                System.out.println(shop.getId());
+                            }
+
+                            ShopAdapter adapter = new ShopAdapter(MenuActivity.this, shops);
+
+                            displayedShops.setAdapter(adapter);
 
 
-        ShopAdapter adapter = new ShopAdapter(MenuActivity.this, shops);
+                        }catch (JSONException err){
+                            System.out.println("ERREEEE");
+                            Log.d("Error", err.toString());
+                        }
 
-        displayedShops.setAdapter(adapter);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("That didn't work!");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        System.out.println(this.shops);
+
+
+
         System.out.println("ON A PAS ATTENDUUUUUUUUUu");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -116,6 +142,7 @@ public class MenuActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.searchFloatingButton);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,7 +197,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    private  void getAllShops( List<Shop> shops ){
+    private  void getAllShops(){
 
 
 
@@ -178,8 +205,50 @@ public class MenuActivity extends AppCompatActivity {
 
 
         Shop s1 = new Shop(1, "Test",1);
-        shops.add(s1);
-        System.out.println(shops);
+        this.shops.add(s1);
+
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response is: "+ response);
+
+
+                        try {
+                            System.out.println("ON EST DEDANS");
+
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject test = jsonArray.getJSONObject(i);
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                shops.add(shop);
+                                System.out.println(shop.getId());
+                            }
+                        }catch (JSONException err){
+                            System.out.println("ERREEEE");
+                            Log.d("Error", err.toString());
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("That didn't work!");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        System.out.println(this.shops);
 
     }
 
