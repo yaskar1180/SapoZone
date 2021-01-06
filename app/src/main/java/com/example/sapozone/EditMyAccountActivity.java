@@ -93,3 +93,99 @@ public class EditMyAccountActivity extends AppCompatActivity {
         if (requestCode==21 && resultCode ==RESULT_OK && data!=null){
             Uri path = data.getData();
             System.out.println(path);
+
+        }
+    }
+
+    public void updateProfilePicture(View view){
+
+
+    }
+
+
+    public void updateAccount(View view){
+
+        EditText usernameTE = findViewById(R.id.edit_username);
+        EditText emailTE = findViewById(R.id.edit_email);
+        EditText phoneTE = findViewById(R.id.edit_phone);
+        EditText bioTE = findViewById(R.id.edit_bio);
+
+        Intent intent = new Intent(this, MyAccountActivity.class);
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+
+            jsonObject.put("username", usernameTE.getText().toString());
+            jsonObject.put("email", emailTE.getText().toString());
+            jsonObject.put("phone_number", phoneTE.getText().toString());
+            jsonObject.put("bio", bioTE.getText().toString());
+
+        }
+        catch (JSONException e){}
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int id = 0;
+        id = sharedPref.getInt("idUser",id);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://api-sapozone.herokuapp.com/users/"+id;
+        int finalId = id;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.PUT, url, jsonObject, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            System.out.println("Reponse d'edit il y'a");
+                            String username = response.getString("username");
+                            String firstname = response.getString("firstname");
+                            String lastname = response.getString("lastname");
+                            String phonenumber = response.getString("phone_number");
+                            String email = response.getString("email");
+                            String streetnumber = response.getString("street_number");
+                            String streetname = response.getString("street_name");
+                            String city = response.getString("city");
+                            String postalcode = response.getString("postal_code");
+                            String bio = response.getString("bio");
+
+                            System.out.println(username+","+ finalId +","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
+                            HashMap<String,Object> account = new HashMap<String,Object>();
+                            account.put("id", String.valueOf(finalId));
+                            account.put("username",username);
+                            account.put("email",email);
+                            account.put("firstname",firstname);
+                            account.put("lastname",lastname);
+                            account.put("phonenumber",phonenumber);
+                            account.put("streetnumber",streetnumber);
+                            account.put("streetname",streetname);
+                            account.put("city",city);
+                            account.put("postalcode",postalcode);
+                            account.put("bio",bio);
+
+                            db.clearTable("account");
+                            db.addRow("account",account);
+
+                            startActivity(intent);
+                        }
+                        catch (JSONException e ){
+                            System.out.println("echec JSON");
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                        System.out.println(error.getMessage());
+
+                    }
+                });
+
+        queue.add(jsonObjectRequest);
+
+
+    }
+}
