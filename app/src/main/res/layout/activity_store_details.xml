@@ -18,11 +18,23 @@
             android:layout_height="133dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="108dp"
-                android:layout_height="87dp"
-                app:srcCompat="@android:drawable/btn_dialog" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="108dp"
+                    android:layout_height="87dp"
+                    app:srcCompat="@android:drawable/btn_dialog" />
+
+                <Button
+                    android:id="@+id/queryButton"
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:text="Requête" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,8 +46,8 @@
                     android:layout_height="64dp">
 
                     <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="73dp"
+                        android:id="@+id/name_store"
+                        android:layout_width="100dp"
                         android:layout_height="29dp"
                         android:text="TextView"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,22 +58,22 @@
                         app:layout_constraintVertical_bias="0.514" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TextView"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintStart_toEndOf="@+id/name_store"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="61dp">
+                    android:layout_height="65dp">
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/bio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TextView"
@@ -73,12 +85,14 @@
                         app:layout_constraintVertical_bias="0.38" />
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TextView"
-                        tools:layout_editor_absoluteX="182dp"
-                        tools:layout_editor_absoluteY="16dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/bio"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

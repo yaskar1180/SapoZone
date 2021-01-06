@@ -70,7 +70,6 @@ public class Database extends SQLiteOpenHelper {
         for (Map.Entry<Object, Object> entry : map.entrySet()) {
             if (entry.getValue() instanceof String) {
                 values.put((String) entry.getKey(), (String) entry.getValue());
-                System.out.println("ajout de la chaine de charactere correspondant a "+entry.getKey()+" : "+entry.getValue());
 
             } else if (entry.getValue() instanceof Float) {
                 values.put((String) entry.getKey(), (Float) entry.getValue());
