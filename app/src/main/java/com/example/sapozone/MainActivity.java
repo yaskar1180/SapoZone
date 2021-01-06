@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONArray response) {
                             System.out.println(response.toString());
-                            System.out.println("api retour check");
+                            System.out.println("api retour check Uodate photo de profile");
                             try {
                                 JSONObject user = response.getJSONObject(0);
                                 String username = user.getString("username");
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                 String city = user.getString("city");
                                 String postalcode = user.getString("postal_code");
                                 String bio = user.getString("bio");
+
 
                                 System.out.println(username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
                                 HashMap<String,Object> account = new HashMap<String,Object>();
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 account.put("city",city);
                                 account.put("postalcode",postalcode);
                                 account.put("bio",bio);
+
 
 
                                 db.addRow("account",account);
