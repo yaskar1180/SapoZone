@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                                 String city = user.getString("city");
                                 String postalcode = user.getString("postal_code");
                                 String bio = user.getString("bio");
-                                String pp = "";
+
 
                                 System.out.println(username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
                                 HashMap<String,Object> account = new HashMap<String,Object>();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 account.put("city",city);
                                 account.put("postalcode",postalcode);
                                 account.put("bio",bio);
-                                account.put("pp",pp);
+
 
 
                                 db.addRow("account",account);

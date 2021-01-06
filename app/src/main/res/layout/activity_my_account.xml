@@ -32,18 +32,19 @@
 
     <ImageView
         android:id="@+id/profile_picture"
-        android:layout_width="161dp"
-        android:layout_height="152dp"
+        android:layout_width="188dp"
+        android:layout_height="188dp"
         android:layout_marginTop="92dp"
+        android:adjustViewBounds="false"
         android:fadingEdge="none"
         android:src="@drawable/pp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.004"
+        app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible" />
 
     <TextView

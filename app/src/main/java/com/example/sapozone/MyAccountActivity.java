@@ -1,8 +1,15 @@
 package com.example.sapozone;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.sapozone.data.users.Account;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -10,9 +17,11 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -38,6 +47,7 @@ public class MyAccountActivity extends AppCompatActivity {
         TextView lastnameTV = findViewById(R.id.profile_lastname);
         TextView phoneTV = findViewById(R.id.profile_phone);
         TextView bioTV = findViewById(R.id.profile_bio);
+        ImageView pp_display = findViewById(R.id.profile_picture);
 
 
         if(accounts.size()!=0) {
@@ -53,6 +63,43 @@ public class MyAccountActivity extends AppCompatActivity {
          bioTV.setText(user.getBio());
         }
         else System.out.println("no account found");
+
+        System.out.println("Requete de recuperation de l'image");
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String mImageURLString = "https://api-sapozone.herokuapp.com/"+sharedPref.getString("pp","");
+        System.out.println("Requete de recuperation de l'image");
+        ImageRequest imageRequest = new ImageRequest(
+                mImageURLString, // Image URL
+                new Response.Listener<Bitmap>() { // Bitmap listener
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        System.out.println("retour de l'image");
+                        // Do something with response
+                        pp_display.setImageBitmap(response);
+                        /*
+                        // Save this downloaded bitmap to internal storage
+                        Uri uri = saveImageToInternalStorage(response);*/
+
+                    }
+                },
+                500, // Image width
+                500, // Image height
+                ImageView.ScaleType.CENTER_CROP, // Image scale type
+                Bitmap.Config.RGB_565, //Image decode configuration
+                new Response.ErrorListener() { // Error listener
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("erreur lors du chargement de l'image");
+                        // Do something with error response
+                        error.printStackTrace();
+                        //   Snackbar.make(mCLayout,"Error",Snackbar.LENGTH_LONG).show();
+                    }
+                }
+        );
+
+        // Add ImageRequest to the RequestQueue
+        requestQueue.add(imageRequest);
 
 
 

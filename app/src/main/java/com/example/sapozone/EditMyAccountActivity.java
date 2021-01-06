@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -66,6 +68,7 @@ public class EditMyAccountActivity extends AppCompatActivity {
         EditText bioTE = findViewById(R.id.edit_bio);
 
 
+
         if(accounts.size()!=0) {
             System.out.println(" account found edit");
             Account user = accounts.get(0);
@@ -89,6 +92,8 @@ public class EditMyAccountActivity extends AppCompatActivity {
                 startActivityForResult(intent,21);
             }
         });
+
+
 
 
     }
@@ -227,7 +232,12 @@ public class EditMyAccountActivity extends AppCompatActivity {
                             account.put("city",city);
                             account.put("postalcode",postalcode);
                             account.put("bio",bio);
-                            account.put("pp",pp);
+
+                            System.out.println("new pp"+ pp);
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("pp", pp);
+                            editor.apply();
+
 
                             db.clearTable("account");
                             db.addRow("account",account);

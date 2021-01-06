@@ -165,7 +165,7 @@ public class  Account {
      * @param city
      * @param bio
      */
-    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio,String pp ) {
+    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
         this.username = username;
         this.password = password;
         this.email = email;
