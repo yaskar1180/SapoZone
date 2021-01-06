@@ -81,8 +81,6 @@ public class MenuActivity extends AppCompatActivity {
 
         String url = "https://api-sapozone.herokuapp.com/stores/";
 
-        Shop s1 = new Shop(1, "Test",1);
-        this.shops.add(s1);
 
 
         // Instantiate the RequestQueue.
@@ -104,7 +102,7 @@ public class MenuActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject test = jsonArray.getJSONObject(i);
-                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),test.getString("postal_code") );
                                 shops.add(shop);
                                 System.out.println(shop.getId());
                             }
@@ -221,8 +219,6 @@ public class MenuActivity extends AppCompatActivity {
         String url = "https://api-sapozone.herokuapp.com/stores/";
 
 
-        Shop s1 = new Shop(1, "Test",1);
-        this.shops.add(s1);
 
 
         // Instantiate the RequestQueue.
@@ -244,7 +240,7 @@ public class MenuActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject test = jsonArray.getJSONObject(i);
-                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),"11" );
                                 shops.add(shop);
                                 System.out.println(shop.getId());
                             }
