@@ -10,7 +10,8 @@ public class Ajout_articleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_article);
-
+        String storeId = getIntent().getStringExtra("storeId");
+        System.out.println(storeId + " Est dans la palce");
     }
 
 }
