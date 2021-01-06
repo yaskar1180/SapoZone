@@ -24,6 +24,7 @@ public class  Account {
     private String city;
     private String bio;
     private String id;
+    private String pp;
 
     public String getId() {
         return id;
@@ -164,7 +165,7 @@ public class  Account {
      * @param city
      * @param bio
      */
-    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
+    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio,String pp ) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -177,6 +178,7 @@ public class  Account {
         this.city= city;
         this.bio= bio;
         this.id=id;
+        this.pp=pp;
 
 
     }
