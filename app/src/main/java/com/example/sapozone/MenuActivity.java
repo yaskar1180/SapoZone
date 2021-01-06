@@ -32,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -80,8 +81,6 @@ public class MenuActivity extends AppCompatActivity {
 
         String url = "https://api-sapozone.herokuapp.com/stores/";
 
-        Shop s1 = new Shop(1, "Test",1);
-        this.shops.add(s1);
 
 
         // Instantiate the RequestQueue.
@@ -99,12 +98,11 @@ public class MenuActivity extends AppCompatActivity {
 
                         try {
 
-                            System.out.println("ON EST DEDANS");
 
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject test = jsonArray.getJSONObject(i);
-                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),test.getString("postal_code") );
                                 shops.add(shop);
                                 System.out.println(shop.getId());
                             }
@@ -112,6 +110,19 @@ public class MenuActivity extends AppCompatActivity {
                             ShopAdapter adapter = new ShopAdapter(MenuActivity.this, shops);
 
                             displayedShops.setAdapter(adapter);
+
+                            displayedShops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position,
+                                                        long id) {
+                                    Shop selectedShop = (Shop) displayedShops.getItemAtPosition(position);
+                                    System.out.println(selectedShop.getId()+"EST CHOOSE");
+                                    Intent intent = new Intent(MenuActivity.this, StoreDetails.class);
+                                    String storeId = String.valueOf(selectedShop.getId());
+                                    intent.putExtra("storeId", storeId);
+                                    startActivity(intent);
+                                }
+                            });
 
 
                         }catch (JSONException err){
@@ -133,9 +144,6 @@ public class MenuActivity extends AppCompatActivity {
 
         System.out.println(this.shops);
 
-
-
-        System.out.println("ON A PAS ATTENDUUUUUUUUUu");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
 
@@ -211,8 +219,6 @@ public class MenuActivity extends AppCompatActivity {
         String url = "https://api-sapozone.herokuapp.com/stores/";
 
 
-        Shop s1 = new Shop(1, "Test",1);
-        this.shops.add(s1);
 
 
         // Instantiate the RequestQueue.
@@ -234,7 +240,7 @@ public class MenuActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject test = jsonArray.getJSONObject(i);
-                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),"11" );
                                 shops.add(shop);
                                 System.out.println(shop.getId());
                             }
