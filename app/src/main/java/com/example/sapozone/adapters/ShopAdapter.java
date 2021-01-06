@@ -17,7 +17,8 @@ import java.util.List;
 
 public class ShopAdapter extends ArrayAdapter<Shop> {
 
-    public ShopAdapter(Context context, List<Shop> shops) {
+    public ShopAdapter(Context context, List<Shop> shops
+    ) {
         super(context, 0, shops);
     }
 
