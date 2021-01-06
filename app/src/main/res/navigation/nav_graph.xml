@@ -45,4 +45,14 @@
             android:id="@+id/action_Second2Fragment_to_First2Fragment"
             app:destination="@id/First2Fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.sapozone.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
 </navigation>
