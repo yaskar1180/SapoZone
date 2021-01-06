@@ -191,7 +191,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public boolean onStores(MenuItem item) {
 
-        Intent intent = new Intent(this, StoreActivity.class);
+        Intent intent = new Intent(this, MenuShopActivity.class);
         // Start the activity
         startActivity(intent);
         return true;
