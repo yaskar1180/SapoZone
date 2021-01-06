@@ -14,6 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SapoZone">
+        <activity
+            android:name=".MenuShopActivity"
+            android:label="@string/title_activity_menu_shop"
+            android:theme="@style/Theme.SapoZone.NoActionBar"></activity>
+        <activity android:name=".StoreDetails" />
         <activity android:name=".MyAddressActivity"></activity>
         <activity android:name=".EditMyAccountActivity" />
         <activity

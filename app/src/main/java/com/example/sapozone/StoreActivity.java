@@ -50,21 +50,15 @@ public class StoreActivity extends AppCompatActivity {
 
         // Get the informations
         EditText store_nameET = findViewById(R.id.name_store);
-        EditText store_street_nameET = findViewById(R.id.store_street_name);
-        EditText store_postal_codeET = findViewById(R.id.store_postale_code);
-        EditText store_cityET = findViewById(R.id.store_city);
+
         EditText store_bioET = findViewById(R.id.store_bio);
-        EditText store_phoneNumberET = findViewById(R.id.store_phoneNumber);
-        EditText store_streetNumberET = findViewById(R.id.store_streetNumber);
+
 
         // Extract the store information
         String store_name = store_nameET.getText().toString();
-        String store_street_name = store_street_nameET.getText().toString();
-        String store_postal_code = store_postal_codeET.getText().toString();
-        String store_city = store_cityET.getText().toString();
+
         String store_bio = store_bioET.getText().toString();
-        int store_phoneNumber = Integer.parseInt(store_phoneNumberET.getText().toString());
-        int store_streetNumber = Integer.parseInt(store_streetNumberET.getText().toString());
+
 
         if(store_name.trim().equals("")) {
             store_nameET.setError("Name is required");
@@ -75,18 +69,18 @@ public class StoreActivity extends AppCompatActivity {
             //save Store info
             HashMap<String,Object> strore = new HashMap<String,Object>();
             strore.put("name",store_name);
-            strore.put("street_name",store_street_name);
-            strore.put("postal_code",store_postal_code);
-            strore.put("city",store_city);
             strore.put("bio",store_bio);
+
             strore.put("phone_number",store_phoneNumber);
             strore.put("street_number",store_streetNumber);
             SharedPreferences sharedPref = sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
             JSONObject jsonObject_insert = new JSONObject();
             try {
+
                 jsonObject_insert.put("name", store_name);
                 jsonObject_insert.put("owner", sharedPref.getInt("idUser",0));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
