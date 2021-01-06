@@ -43,6 +43,72 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
+<<<<<<< Updated upstream
+=======
+        this.displayedShops = findViewById(R.id.displayedShops);
+
+
+
+        String url = "https://api-sapozone.herokuapp.com/stores/";
+
+        Shop s1 = new Shop(1, "Test",1);
+        this.shops.add(s1);
+
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Display the first 500 characters of the response string.
+                        System.out.println("Response menu is: "+ response);
+
+
+                        try {
+
+                            System.out.println("ON EST DEDANS");
+
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject test = jsonArray.getJSONObject(i);
+                                Shop shop = new Shop(test.getInt("id"),test.getString("name"),11 );
+                                shops.add(shop);
+                                System.out.println(shop.getId());
+                            }
+
+                            ShopAdapter adapter = new ShopAdapter(MenuActivity.this, shops);
+
+                            displayedShops.setAdapter(adapter);
+
+
+                        }catch (JSONException err){
+                            System.out.println("ERREEEE");
+                            Log.d("Error", err.toString());
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("That didn't work!");
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        System.out.println(this.shops);
+
+
+
+        System.out.println("ON A PAS ATTENDUUUUUUUUUu");
+
+>>>>>>> Stashed changes
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.search);
