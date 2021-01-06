@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuShopActivity">
+    tools:context=".MyStoreManagement">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -19,16 +18,15 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Bienvenue sur votre espace Magasin" />
+                android:text="Bienvenue dans votres espage de gestion de magasin." />
         </LinearLayout>
 
         <LinearLayout
@@ -40,13 +38,12 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_create_shop"
+                android:id="@+id/button_info_shop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Créer votre magasin"
-                app:backgroundTint="#E91E63"
-                android:onClick="ajoutShop"/>
+                android:text="Voir les infos du magasin"
+                android:onClick="getTotalInfoShop"/>
         </LinearLayout>
 
         <LinearLayout
@@ -58,12 +55,13 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_manage_shop"
+                android:id="@+id/button_manage_prestation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Gerer mon magasin"
-                android:onClick="manageShop"/>
+                android:text="Gerer mes prestations"
+                app:backgroundTint="#00BCD4"
+                android:onClick="managePrestation"/>
         </LinearLayout>
 
         <LinearLayout
@@ -75,12 +73,31 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_delete_shop"
+                android:id="@+id/button_manage_devis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Supprimer votre magasin"
-                app:backgroundTint="#760096" />
+                android:text="Gerer mes devis"
+                app:backgroundTint="#F11717"
+                android:onClick="manageDevis"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/_manage_commandes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Gerer mes commandes"
+                app:backgroundTint="#235925"
+                android:onClick="manageCommande"/>
         </LinearLayout>
     </LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

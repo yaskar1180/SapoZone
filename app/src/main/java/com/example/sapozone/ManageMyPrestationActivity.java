@@ -1,27 +1,33 @@
 package com.example.sapozone;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import com.androidnetworking.AndroidNetworking;
 
-public class Ajout_articleActivity extends AppCompatActivity {
+public class ManageMyPrestationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajout_article);
-
+        setContentView(R.layout.activity_manage_my_prestation);
     }
 
-    public void validateAddPrestation(View view) {
+    public void getMyPrestation(View view) {
 
         Intent intent = new Intent(this,MenuActivity.class);
         // Start the activity
         startActivity(intent);
     }
 
+    public void addMyPrestation(View view) {
+
+        Intent intent = new Intent(this,Ajout_articleActivity.class);
+        // Start the activity
+        startActivity(intent);
+    }
 }

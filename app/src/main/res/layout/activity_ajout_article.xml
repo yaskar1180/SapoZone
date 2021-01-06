@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StoreActivity">
+    tools:context=".Ajout_articleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,39 +23,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Id" />
+                android:text="Délais" />
 
             <EditText
-                android:id="@+id/id_ajout_article"
+                android:id="@+id/myprestation_delais"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nom de l'article" />
-
-            <EditText
-                android:id="@+id/nom_ajout_article"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
@@ -74,7 +51,7 @@
                 android:text="Prix de l'article" />
 
             <EditText
-                android:id="@+id/prix_ajout_article"
+                android:id="@+id/myprestation_price"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -96,39 +73,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Commentaire" />
+                android:text="Description" />
 
             <EditText
-                android:id="@+id/commentaire_ajout_artcle"
+                android:id="@+id/description_ajout_artcle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Photo" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/logo" />
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,7 +98,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Valider" />
+                android:text="Valider"
+                android:onClick="validateAddPrestation"/>
         </LinearLayout>
     </LinearLayout>
 
