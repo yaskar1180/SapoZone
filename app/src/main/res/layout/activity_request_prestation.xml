@@ -43,12 +43,14 @@
                 android:text="Details" />
 
             <EditText
-                android:id="@+id/editTextPrestation_request_details"
+                android:id="@+id/requestdetails"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,8 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button"
-                android:onClick="validateRequest"/>
+                android:onClick="validateRequest"
+                android:text="submit" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
