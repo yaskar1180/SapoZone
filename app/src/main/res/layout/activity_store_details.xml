@@ -33,6 +33,7 @@
                     android:id="@+id/queryButton"
                     android:layout_width="106dp"
                     android:layout_height="wrap_content"
+                    android:onClick="customer_request"
                     android:text="Requête" />
             </LinearLayout>
 

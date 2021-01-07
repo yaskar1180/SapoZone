@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class StoreDetails extends AppCompatActivity {
+    String storeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class StoreDetails extends AppCompatActivity {
 
         setContentView(R.layout.activity_store_details);
         Bundle extras = getIntent().getExtras();
-        String storeId = extras.getString("storeId");
+        storeId = extras.getString("storeId");
 
         System.out.println(storeId+ "ON T4AS EUUUUUUU");
         String urlStore = "https://api-sapozone.herokuapp.com/stores/"+storeId;
@@ -93,6 +94,12 @@ public class StoreDetails extends AppCompatActivity {
 
 
 
+
+    }
+    public void customer_request(View view){
+        Intent intent = new Intent(this,RequestPrestationActivity.class);
+        intent.putExtra("storeId", this.storeId);
+        startActivity(intent);
 
     }
 }
