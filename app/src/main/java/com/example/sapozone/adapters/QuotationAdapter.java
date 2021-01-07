@@ -45,8 +45,8 @@ public class QuotationAdapter extends ArrayAdapter<Quote> {
 
         //il ne reste plus qu'à remplir notre vue
         viewHolder.detail.setText(quote.getDetail());
-        viewHolder.price.setText(quote.getPrice()+"");
-        viewHolder.lead.setText(quote.getLead()+"");
+        viewHolder.price.setText(quote.getPrice()+" €");
+        viewHolder.lead.setText(quote.getLead()+" jour(s)");
 
 
         return convertView;
