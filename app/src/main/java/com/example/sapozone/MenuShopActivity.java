@@ -1,17 +1,29 @@
 package com.example.sapozone;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.androidnetworking.AndroidNetworking;
+import com.example.sapozone.data.shop.Shop;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MenuShopActivity extends AppCompatActivity {
 
@@ -32,10 +44,9 @@ public class MenuShopActivity extends AppCompatActivity {
     }
 
     public void getTotalInfoShop(View view) {
-
-        Intent intent = new Intent(this,MenuActivity.class);
-        // Start the activity
+        Intent intent = new Intent(this, MyStoreManagement.class);
         startActivity(intent);
+
     }
 
     public void manageShop(View view) {
