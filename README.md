@@ -1,5 +1,5 @@
 ### SapoZone
-
+-Repository for the server's Api : https://github.com/hamzaa99/api-sapozone
 ## Documentation for developers
 
 
@@ -8,6 +8,5 @@
 - Target : Android 8.0
 - Virtual device used : Nexus 4
 - API :26
-
 
 
