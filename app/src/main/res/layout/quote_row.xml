@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="match_parent" android:padding="10dp" >
+
+        <TextView android:id="@+id/detail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/black" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/logo" android:layout_alignTop="@+id/logo" android:textStyle="bold" tools:text="nom" />
+
+        <TextView android:id="@+id/price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@android:color/black" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/logo" android:layout_alignTop="@+id/logo" android:textStyle="bold" tools:text="nom" />
+
+        <TextView
+            android:id="@+id/lead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_alignLeft="@+id/detail"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="351dp"
+            android:layout_marginRight="351dp"
+            android:textColor="@android:color/black"
+            tools:text="code po" />
+
+    </RelativeLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

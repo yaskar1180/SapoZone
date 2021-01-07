@@ -84,14 +84,14 @@ public class MyStoreManagement extends AppCompatActivity {
 
     public void manageDevis(View view) {
 
-        Intent intent = new Intent(this,MenuActivity.class);
+        Intent intent = new Intent(this,QuotationManageActivity.class);
         // Start the activity
         startActivity(intent);
     }
 
     public void manageCommande(View view) {
 
-        Intent intent = new Intent(this,MenuActivity.class);
+        Intent intent = new Intent(this,QuotationManageActivity.class);
         // Start the activity
         startActivity(intent);
     }
