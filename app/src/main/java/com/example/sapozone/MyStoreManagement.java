@@ -32,7 +32,7 @@ public class MyStoreManagement extends AppCompatActivity {
     public void getTotalInfoShop(View view) {
     System.out.println("acces a l'affichage du shop");
         RequestQueue queue = Volley.newRequestQueue(this);
-        Intent intent = new Intent(this,StoreDetails.class);
+        Intent intent = new Intent(this,EditShopActivity.class);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int id = 0;
         id = sharedPref.getInt("idUser",id);
