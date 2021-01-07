@@ -26,7 +26,7 @@ public class ManageMyPrestationActivity extends AppCompatActivity {
 
     public void addMyPrestation(View view) {
 
-        Intent intent = new Intent(this,Ajout_articleActivity.class);
+        Intent intent = new Intent(this, Add_ProductActivity.class);
         // Start the activity
         startActivity(intent);
     }

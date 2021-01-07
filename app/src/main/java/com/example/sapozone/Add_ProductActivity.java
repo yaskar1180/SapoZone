@@ -22,15 +22,13 @@ import com.androidnetworking.AndroidNetworking;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
-public class Ajout_articleActivity extends AppCompatActivity {
+public class Add_ProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajout_article);
+        setContentView(R.layout.activity_add_product);
 
     }
 

@@ -73,7 +73,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
             System.out.println(" account found edit");
             Account user = accounts.get(0);
             System.out.println(user.getEmail());
-
             usernameTE.setText(user.getUsername());
             emailTE.setText(user.getEmail());
             phoneTE.setText(user.getPhonenumber());
