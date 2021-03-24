@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
     <item android:title="Utilisateurs">
         <menu>
             <item
@@ -14,10 +13,8 @@
                 android:id="@+id/my_shop"
                 android:title="Mon magasin"
                 android:onClick="onStores" />
-
         </menu>
     </item>
-
 
     <item android:title="Communications">
         <menu>
@@ -28,7 +25,6 @@
             <item
                 android:id="@+id/nav_request"
                 android:title="Mes demandes" />
-
         </menu>
     </item>
 
