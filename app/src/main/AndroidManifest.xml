@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SapoZone">
-        <activity android:name=".QuotationManageActivity"></activity>
-        <activity android:name=".EditShopActivity"></activity>
+        <activity android:name=".MessagingActivity"></activity>
+        <activity android:name=".QuotationManageActivity" />
+        <activity android:name=".EditShopActivity" />
         <activity android:name=".RequestPrestationActivity" />
         <activity android:name=".ManageMyPrestationActivity" />
         <activity android:name=".MyStoreManagement" />
