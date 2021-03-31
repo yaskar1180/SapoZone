@@ -91,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     Toast.makeText(getApplicationContext(), "Le compte a été créé avec succès.", Toast.LENGTH_SHORT).show();
+                    System.out.println(" ***** REPONSE *****" + response.toString());
                     startActivity(intent);
                 }
 

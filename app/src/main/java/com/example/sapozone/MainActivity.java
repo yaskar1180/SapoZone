@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
-
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
@@ -110,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        setContentView(R.layout.activity_accueil);
+    }
+
     public void goToLogIn(View view) {
         setContentView(R.layout.activity_main);
     }
@@ -174,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         id = response.getInt("id");
                     } catch (JSONException e){
-                        System.out.println("somthing didnt work");
+                        System.out.println("something didnt work");
                     }
 
                     if (id != 0) {
