@@ -8,6 +8,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.model.Progress;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
+
         this.db = new Database(this);
         Intent intent = new Intent(this, MenuActivity.class);
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 .getAsJSONArray(new JSONArrayRequestListener(){
                     @Override
                     public void onResponse(JSONArray response) {
+
                         System.out.println(response.toString());
                         System.out.println("api retour check Update photo de profil");
                         try {
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError error) {
+
                         System.out.println( error.getMessage() );
                         System.out.println( error.getErrorCode() );
                         System.out.println( error.getCause() );
@@ -116,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
+
+        // Show loader
+        ProgressBar loaderBar = (ProgressBar) findViewById(R.id.login_loader);
+        loaderBar.setVisibility(View.VISIBLE);
+
         // Create an intent for the second activity
         Intent intent = new Intent(this, MenuActivity.class);
 
@@ -150,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener(){
                 @Override
                 public void onResponse(JSONObject response) {
+
+                    // Hide loader
+                    ProgressBar loaderBar = (ProgressBar) findViewById(R.id.login_loader);
+                    loaderBar.setVisibility(View.INVISIBLE);
+
                     System.out.println(response.toString());
                     sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -170,11 +186,15 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError error) {
+                    // Hide loader
+                    ProgressBar loaderBar = (ProgressBar) findViewById(R.id.login_loader);
+                    loaderBar.setVisibility(View.INVISIBLE);
+
                     System.out.println(error.getMessage());
                     System.out.println(error.getErrorCode());
                     System.out.println(error.getCause());
-                    usernameET.setError( "Error login" );
-                    passwordET.setError( "Error login" );
+                    usernameET.setError("Error login");
+                    passwordET.setError("Error login");
                 }
             });
         }
