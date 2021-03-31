@@ -27,14 +27,7 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-
-
-
-
-
-
     private com.example.sapozone.Database db = new com.example.sapozone.Database(this);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +49,6 @@ public class RegisterActivity extends AppCompatActivity {
         String username = usernameET.getText().toString();
         String password = passwordET.getText().toString();
         String email = emailET.getText().toString();
-
-
-
 
         if(username.trim().equals("")) {
             usernameET.setError( "Name is required" );
