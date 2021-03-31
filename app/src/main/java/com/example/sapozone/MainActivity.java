@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_accueil);
         this.db = new Database(this);
         Intent intent = new Intent(this, MenuActivity.class);
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
+    }
+
+    public void goToLogIn(View view) {
+        setContentView(R.layout.activity_main);
     }
 
     public void register(View view) {
