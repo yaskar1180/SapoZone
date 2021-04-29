@@ -178,14 +178,15 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         id = response.getInt("id");
+                        if (id != 0) {
+                            editor.putInt("idUser", id);
+                            editor.apply();
+                            startActivity(intent);
+                        }
                     } catch (JSONException e){
                         System.out.println("something didnt work");
-                    }
-
-                    if (id != 0) {
-                        editor.putInt("idUser", id);
-                        editor.apply();
-                        startActivity(intent);
+                        usernameET.setError("Wrong set of login.");
+                        passwordET.setError("Wrong set of login");
                     }
                 }
 
