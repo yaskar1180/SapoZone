@@ -34,10 +34,8 @@ public class MyAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         this.db = new Database(this);
+        setContentView(R.layout.activity_my_account);
 
         ArrayList<Account> accounts = (ArrayList<Account>) db.getAllRows(Database.ACCOUNT_TABLE);
         TextView usernameTV = findViewById(R.id.profile_username);

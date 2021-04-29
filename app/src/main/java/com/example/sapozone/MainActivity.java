@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int id = 0;
-        id = sharedPref.getInt("idUser", id);
+        id = this.sharedPref.getInt("idUser", id);
 
         if (id != 0){
             this.db.clearTable("account");
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                             System.out.println(username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
                             HashMap<String,Object> account = new HashMap<String,Object>();
+
                             account.put("id", String.valueOf(finalId));
                             account.put("username",username);
                             account.put("email",email);
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             account.put("postalcode",postalcode);
                             account.put("bio",bio);
 
-                            db.addRow("account",account);
+                            db.addRow("account", account);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -167,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
 
+                    int id = 0;
+
                     // Hide loader
                     ProgressBar loaderBar = (ProgressBar) findViewById(R.id.login_loader);
                     loaderBar.setVisibility(View.INVISIBLE);
@@ -174,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(response.toString());
                     sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    int id = 0;
 
                     try {
                         id = response.getInt("id");
