@@ -151,6 +151,13 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onConversations(MenuItem item){
+        Intent intent = new Intent(this, ConversationActivity.class);
+        startActivity(intent);
+    }
+
+
+
     private  void getAllShops(){
 
         String url = "https://api-sapozone.herokuapp.com/stores/";

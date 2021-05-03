@@ -13,4 +13,14 @@
     <color name="secondary">#ffeb3b</color>
     <color name="secondary_light">#ffff72</color>
     <color name="secondary_dark">#c8b900</color>
+
+    <color name="survey_toplist_item">#EFEDEC</color>
+    <color name="survey_alternate_color">#EBE7E6</color>
+    <color name="grey">#ffffff</color>
+    <color name="itemselected">#EDEDED</color>
+    <color name="login_hover">#E5F5FA</color>
+    <color name="sign_out_color">#e84040</color>
+
+
+
 </resources>

@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.SapoZone">
-        <activity android:name=".MessagingActivity"></activity>
+        <activity android:name=".ConversationActivity"></activity>
+        <activity android:name=".MessagingActivity" />
         <activity android:name=".QuotationManageActivity" />
         <activity android:name=".EditShopActivity" />
         <activity android:name=".RequestPrestationActivity" />
@@ -30,12 +31,11 @@
         <activity
             android:name=".MyAccountActivity"
             android:label="@string/title_activity_my_account" />
-
         <activity android:name=".StoreActivity" />
         <activity
             android:name=".MenuActivity"
-            tools:ignore="ExtraText"
-            android:label="MenuActivity" />
+            android:label="MenuActivity"
+            tools:ignore="ExtraText" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
@@ -44,6 +44,7 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

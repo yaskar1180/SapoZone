@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,10 +18,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.sapozone.adapters.QuotationAdapter;
-import com.example.sapozone.data.shop.Quote;
+import com.example.sapozone.adapters.MessageAdapter;
+import com.example.sapozone.data.communication.Message;
 import com.example.sapozone.data.shop.Shop;
 
 import org.json.JSONArray;
@@ -32,14 +35,20 @@ import java.util.List;
 public class MessagingActivity extends AppCompatActivity {
 
 
-    String storeId;
+    String myId;
+    String interlocutorId;
+    String interlocutorName;
 
-
-    List<Conversation> quotes = new ArrayList<Conversation>();
+    List<Message> messages = new ArrayList<Message>();
 
     //TODO
-    private ListView displayedConversations;
+    private ListView displayedMessages;
 
+
+    private RequestQueue queue;
+
+
+    Bundle savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,45 +56,35 @@ public class MessagingActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_messaging);
-
-        this.displayedConversations = findViewById(R.id.displayedPresta);
+        this.savedInstanceState = savedInstanceState;
+        this.displayedMessages = findViewById(R.id.displayedMessages);
 
 
 
         Bundle extras = getIntent().getExtras();
-        storeId = extras.getString("storeId");
+        myId = extras.getString("myId");
+        interlocutorId = extras.getString("interlocutorId");
+        interlocutorName = extras.getString("interlucutorName");
 
-        System.out.println(storeId+ "ON T4AS EUUUUUUU");
-        String urlStore = "https://api-sapozone.herokuapp.com/stores/"+storeId;
+        System.out.println(myId+"ENNENEN");
+        System.out.println(interlocutorId+"ENENDDE");
+
+        TextView t = (TextView) findViewById(R.id.seenMessageName);
+        t.setText(interlocutorName);
+
+
 
         // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        queue = Volley.newRequestQueue(this);
 
 
+        String urlMessages = "https://api-sapozone.herokuapp.com/messages/user1/"+myId+"/user2/"+interlocutorId;
 
-
-
-
-
-
-
-
-
-
-
-        String urlQuote = "https://api-sapozone.herokuapp.com/storeproducts/"+storeId;
-
-
-
-        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, urlQuote,
+        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, urlMessages,
                 new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response2) {
-
-
-
-
 
                         try {
                             System.out.println(response2 + "EST OKEYYY");
@@ -97,19 +96,20 @@ public class MessagingActivity extends AppCompatActivity {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject test = jsonArray.getJSONObject(i);
 
-                                Quote quote = new Quote(test.getString("detail"), test.getInt("price"), test.getInt("lead"));
+                                Message message = new Message(test.getString("sender_id"), test.getString("receiver_id"), test.getString("sender"),test.getString("receiver"), test.getString("content"), test.getString("date"));
+                                messages.add(message);
 
-                                quotes.add(quote);
-                                System.out.println(quote.getDetail()+"EN YYYYYYYYYYYY");
-                                System.out.println(quotes+"EN ZZZZZZZZZZZZ");
+                                System.out.println(message.getSenderId()+"EN AAAAA");
+
+                                System.out.println(message.toString()+"EN YYYYYYYYYYYY");
+                                System.out.println(messages+"EN ZZZZZZZZZZZZ");
 
                             }
 
-                            System.out.println(quotes+"EN ZZZZZZZZZZZZ");
-                            QuotationAdapter adapter = new QuotationAdapter(StoreDetails.this, quotes);
-
-                            displayedQuotes.setAdapter(adapter);
-
+                            System.out.println(messages+"EN ZZZZZZZZZZZZ");
+                            MessageAdapter adapter = new MessageAdapter(MessagingActivity.this, messages);
+                            adapter.getView(adapter.getPosition(),adapter.getConvertView(),adapter.getViewGroup()).setBackgroundColor(Color.CYAN);
+                            displayedMessages.setAdapter(adapter);
 
 
                         }catch (JSONException err){
@@ -134,109 +134,53 @@ public class MessagingActivity extends AppCompatActivity {
         queue.add(stringRequest1);
 
 
+    }
 
 
+    //TODO
+    public void sendMessage(View view){
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlStore,
-                new Response.Listener<String>() {
+        EditText t = (EditText) findViewById(R.id.messageToSend);
+        String message = t.getText().toString();
+        System.out.println(message);
+
+
+        String url = "https://api-sapozone.herokuapp.com/messages/";
+
+
+        JSONObject requestbody = new JSONObject();
+        try {
+            requestbody.put("receiver_id", myId);
+            requestbody.put("sender_id", interlocutorId);
+            requestbody.put("id_store", "21");
+            requestbody.put("content", message);
+            System.out.println("request body : " + requestbody.toString());
+        } catch (JSONException e) {
+            System.out.println(e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.POST, url, requestbody, new Response.Listener<JSONObject>() {
+
                     @Override
-                    public void onResponse(String response) {
-
-                        // Display the first 500 characters of the response string.
-                        System.out.println("Response is: "+ response);
-
-
-                        try {
-
-                            JSONObject test = new JSONObject(response);
-
-                            System.out.println(test.getString("postal_code")+ "TEEEEEST");
-                            Shop shop = new Shop(test.getInt("id"),test.getString("name"),test.getString("phone"),test.getString("postal_code"), test.getString("bio"),test.getString("picture") );
-
-                            TextView viewName = (TextView) findViewById(R.id.name_store);
-                            viewName.setText(shop.getName());
-
-                            System.out.println(shop.getPostalCode()+"EST RECUUUUUUUUUP");
-                            TextView viewPC = (TextView) findViewById(R.id.city);
-                            viewPC.setText(shop.getPostalCode());
-
-                            TextView viewPhone = (TextView) findViewById(R.id.phone);
-                            viewPhone.setText(shop.getPhoneNumber());
-
-                            TextView viewBio = (TextView) findViewById(R.id.bio);
-                            viewBio.setText(shop.getName());
-
-                            ImageView viewPicture= findViewById(R.id.StorePicture);
-
-                            if(shop.getPicture()!="") {
-
-                                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                                String mImageURLString = "https://api-sapozone.herokuapp.com" + shop.getPicture();
-                                System.out.println("Requete de recuperation de l'image");
-                                System.out.println(mImageURLString);
-                                ImageRequest imageRequest = new ImageRequest(
-                                        mImageURLString, // Image URL
-                                        new Response.Listener<Bitmap>() { // Bitmap listener
-                                            @Override
-                                            public void onResponse(Bitmap response) {
-                                                System.out.println("retour de l'image");
-                                                // Do something with response
-                                                viewPicture.setImageBitmap(response);
-                        /*
-                        // Save this downloaded bitmap to internal storage
-                        Uri uri = saveImageToInternalStorage(response);*/
-
-                                            }
-                                        },
-                                        500, // Image width
-                                        500, // Image height
-                                        ImageView.ScaleType.CENTER_CROP, // Image scale type
-                                        Bitmap.Config.RGB_565, //Image decode configuration
-                                        new Response.ErrorListener() { // Error listener
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                System.out.println("erreur lors du chargement de l'image");
-                                                // Do something with error response
-                                                error.printStackTrace();
-                                                //   Snackbar.make(mCLayout,"Error",Snackbar.LENGTH_LONG).show();
-                                            }
-                                        }
-                                );
-
-                                // Add ImageRequest to the RequestQueue
-                                requestQueue.add(imageRequest);
-
-                            }
-
-
-
-                        }catch (JSONException err){
-                            System.out.println("ERREEEE");
-                            Log.d("Error", err.toString());
-                        }
-
-
+                    public void onResponse(JSONObject response) {
+                        System.out.println(response.toString());
+                        //Recharger?
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("That didn't work!");
-            }
-        });
 
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                        System.out.println(error.getMessage());
+                        System.out.println(error.getCause());
+
+                    }
+                });
         // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-
-
-
+        queue.add(jsonObjectRequest);
 
     }
-    public void customer_request(View view){
-        Intent intent = new Intent(this,RequestPrestationActivity.class);
-        intent.putExtra("storeId", this.storeId);
-        startActivity(intent);
 
-    }
 }
