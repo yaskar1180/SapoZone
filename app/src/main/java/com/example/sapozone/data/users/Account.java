@@ -2,7 +2,7 @@ package com.example.sapozone.data.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.example.sapozone.data.communication.Chat;
+
 import com.example.sapozone.data.shop.Quote;
 import com.example.sapozone.data.shop.Command;
 
@@ -44,12 +44,6 @@ public class  Account {
      * Stock the email of the users already rated
      */
     private ArrayList<String> AccountsAlreadyRated = new ArrayList<String>();
-
-    /**
-     * Stock all conversations
-     */
-    private HashMap<String, Chat> chats = new HashMap<String, Chat>();
-
 
 
     //--------------------------------   Shop
@@ -234,13 +228,8 @@ public class  Account {
         AccountsAlreadyRated = accountsAlreadyRated;
     }
 
-    public HashMap<String, Chat> getChats() {
-        return chats;
-    }
 
-    public void setChats(HashMap<String, Chat> chats) {
-        this.chats = chats;
-    }
+
 
     public HashMap<String, Command> getHistoric() {
         return historic;

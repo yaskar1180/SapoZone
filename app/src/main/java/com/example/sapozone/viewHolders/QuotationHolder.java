@@ -9,5 +9,4 @@ public class QuotationHolder {
     public TextView price;
     public TextView lead;
 
-
 }
