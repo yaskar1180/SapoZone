@@ -20,5 +20,10 @@
     <string name="hint_password">Mot de passe</string>
     <string name="hint_username">Nom d\'utilisateur</string>
     <string name="logo_desc">SapoZone</string>
+    <string name="hint_email">Adresse email</string>
+    <string name="register_btn">Register</string>
+    <string name="email_hint">Email adress</string>
+    <string name="password_hint">Password</string>
+    <string name="username_hint">Username</string>
 
 </resources>
