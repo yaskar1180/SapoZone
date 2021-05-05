@@ -168,7 +168,7 @@ public class StoreDetails extends AppCompatActivity {
                             viewPhone.setText(shop.getPhoneNumber());
 
                             TextView viewBio = (TextView) findViewById(R.id.bio);
-                            viewBio.setText(shop.getName());
+                            viewBio.setText(shop.getBio());
 
                             ImageView viewPicture= findViewById(R.id.StorePicture);
 
