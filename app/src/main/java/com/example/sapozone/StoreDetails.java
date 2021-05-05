@@ -48,52 +48,24 @@ public class StoreDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_store_details);
-
         this.displayedQuotes = findViewById(R.id.displayedPresta);
-
-
-
         Bundle extras = getIntent().getExtras();
         storeId = extras.getString("storeId");
 
-        System.out.println(storeId+ "ON T4AS EUUUUUUU");
         String urlStore = "https://api-sapozone.herokuapp.com/stores/"+storeId;
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-
-
-
-
-
-
-
-
-
-
-
-
-
         String urlQuote = "https://api-sapozone.herokuapp.com/storeproducts/"+storeId;
-
-
-
         StringRequest stringRequest1 = new StringRequest(Request.Method.GET, urlQuote,
                 new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response2) {
 
-
-
-
-
                         try {
                             System.out.println(response2 + "EST OKEYYY");
-
-
                             JSONArray jsonArray = new JSONArray(response2);
                             System.out.println(jsonArray.toString() + "EST OKEYYY");
 

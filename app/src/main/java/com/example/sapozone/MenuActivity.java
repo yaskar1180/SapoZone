@@ -155,9 +155,32 @@ public class MenuActivity extends AppCompatActivity {
 
     public boolean onStores(MenuItem item) {
 
-        Intent intent = new Intent(this, MenuShopActivity.class);
+        /* Intent intent = new Intent(this, MenuShopActivity.class);
         // Start the activity
-        startActivity(intent);
+        startActivity(intent); */
+        RequestQueue queue = Volley.newRequestQueue(this);
+        int id = 0;
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        id = sharedPref.getInt("idUser", id);
+        String url = "https://api-sapozone.herokuapp.com/store/owner/"+id;
+        System.out.println(url);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Intent intent = new Intent(getApplicationContext(), MyStoreManagement.class);
+                        startActivity(intent);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
         return true;
     }
 
