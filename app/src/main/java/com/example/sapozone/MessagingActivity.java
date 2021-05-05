@@ -77,6 +77,7 @@ public class MessagingActivity extends AppCompatActivity {
 
         String urlMessages = "https://api-sapozone.herokuapp.com/messages/user1/"+myId+"/user2/"+interlocutorId;
 
+        System.out.println(urlMessages);
         StringRequest stringRequest1 = new StringRequest(Request.Method.GET, urlMessages,
                 new Response.Listener<String>() {
 
