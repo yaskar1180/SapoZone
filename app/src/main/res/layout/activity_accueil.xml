@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pexels_antonio_dillard_4462781" />
+        app:srcCompat="@drawable/nike_vert" />
 
     <Button
         android:id="@+id/button5"
