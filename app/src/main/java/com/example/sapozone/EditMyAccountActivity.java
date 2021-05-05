@@ -60,22 +60,32 @@ public class EditMyAccountActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         this.db = new Database(this);
 
-        ArrayList<Account> accounts = (ArrayList<Account>)db.getAllRows(Database.ACCOUNT_TABLE);
+        ArrayList<Account> accounts = (ArrayList<Account>) db.getAllRows(Database.ACCOUNT_TABLE);
 
         EditText usernameTE = findViewById(R.id.edit_username);
+        EditText firstnameTE = findViewById(R.id.edit_firstname);
+        EditText lastnameTE = findViewById(R.id.edit_lastname);
         EditText emailTE = findViewById(R.id.edit_email);
         EditText phoneTE = findViewById(R.id.edit_phone);
+        EditText streetNumberTE = findViewById(R.id.edit_street_number);
+        EditText streetNameTE = findViewById(R.id.edit_street_name);
+        EditText cityTE = findViewById(R.id.edit_city);
+        EditText postalCodeTE = findViewById(R.id.edit_postal_code);
         EditText bioTE = findViewById(R.id.edit_bio);
 
-
-
-        if(accounts.size()!=0) {
+        if(accounts.size() != 0) {
             System.out.println(" account found edit");
             Account user = accounts.get(0);
             System.out.println(user.getEmail());
             usernameTE.setText(user.getUsername());
+            firstnameTE.setText(user.getFirstname());
+            lastnameTE.setText(user.getLastname());
             emailTE.setText(user.getEmail());
             phoneTE.setText(user.getPhonenumber());
+            streetNumberTE.setText(user.getStreetnumber());
+            streetNameTE.setText(user.getStreetname());
+            cityTE.setText(user.getCity());
+            postalCodeTE.setText(user.getPostal_code());
             bioTE.setText(user.getBio());
         }
         else System.out.println("no account found");
@@ -91,10 +101,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
                 startActivityForResult(intent,21);
             }
         });
-
-
-
-
     }
 
     @Override
@@ -105,7 +111,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
             System.out.println(path);
 
             try {
-
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),path);
                 uploadBitmap(bitmap);
                 /*ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -114,7 +119,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -165,8 +169,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
                         Log.e("GotError",""+error.getMessage());
                     }
                 }) {
-
-
             @Override
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
@@ -184,12 +186,11 @@ public class EditMyAccountActivity extends AppCompatActivity {
     public void updateProfilePicture(String Url){
         JSONObject jsonObject = new JSONObject();
         try {
-
             jsonObject.put("pp", Url);
-
+        } catch (JSONException e){
 
         }
-        catch (JSONException e){}
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int id = 0;
         id = sharedPref.getInt("idUser",id);
@@ -237,11 +238,8 @@ public class EditMyAccountActivity extends AppCompatActivity {
                             editor.putString("pp", pp);
                             editor.apply();
 
-
                             db.clearTable("account");
                             db.addRow("account",account);
-
-
                         }
                         catch (JSONException e ){
                             System.out.println("echec JSON");
@@ -249,27 +247,28 @@ public class EditMyAccountActivity extends AppCompatActivity {
                         }
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-
                         System.out.println(error.getMessage());
-
                     }
                 });
 
         queue.add(jsonObjectRequest);
-
-
     }
 
 
     public void updateAccount(View view){
 
         EditText usernameTE = findViewById(R.id.edit_username);
+        EditText firstnameTE = findViewById(R.id.edit_firstname);
+        EditText lastnameTE = findViewById(R.id.edit_lastname);
         EditText emailTE = findViewById(R.id.edit_email);
         EditText phoneTE = findViewById(R.id.edit_phone);
+        EditText streetNumberTE = findViewById(R.id.edit_street_number);
+        EditText streetNameTE = findViewById(R.id.edit_street_name);
+        EditText cityTE = findViewById(R.id.edit_city);
+        EditText postalCodeTE = findViewById(R.id.edit_postal_code);
         EditText bioTE = findViewById(R.id.edit_bio);
 
         Intent intent = new Intent(this, MyAccountActivity.class);
@@ -278,10 +277,15 @@ public class EditMyAccountActivity extends AppCompatActivity {
         try {
 
             jsonObject.put("username", usernameTE.getText().toString());
+            jsonObject.put("firstname", firstnameTE.getText().toString());
+            jsonObject.put("lastname", lastnameTE.getText().toString());
             jsonObject.put("email", emailTE.getText().toString());
             jsonObject.put("phone_number", phoneTE.getText().toString());
+            jsonObject.put("street_number", streetNumberTE.getText().toString());
+            jsonObject.put("street_name", streetNameTE.getText().toString());
+            jsonObject.put("city", cityTE.getText().toString());
+            jsonObject.put("postal_code", postalCodeTE.getText().toString());
             jsonObject.put("bio", bioTE.getText().toString());
-
         }
         catch (JSONException e){}
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -340,14 +344,10 @@ public class EditMyAccountActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-
                         System.out.println(error.getMessage());
-
                     }
                 });
 
         queue.add(jsonObjectRequest);
-
-
     }
 }
