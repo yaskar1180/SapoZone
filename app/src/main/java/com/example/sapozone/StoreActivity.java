@@ -127,8 +127,6 @@ public class StoreActivity extends AppCompatActivity {
 
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                // TODO: Handle error
-
                                                 System.out.println(error.getMessage());
                                                 System.out.println("erreur lors de l'update");
 
@@ -202,11 +200,8 @@ public class StoreActivity extends AppCompatActivity {
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            // TODO: Handle error
-
                             System.out.println(error.getMessage());
                             System.out.println("erreur lors de l'update");
-
                         }
                     });
 
