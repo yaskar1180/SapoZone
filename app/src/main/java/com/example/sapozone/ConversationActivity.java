@@ -125,12 +125,12 @@ public class ConversationActivity extends AppCompatActivity {
                                     intent.putExtra("myId", myId);
                                     if(selectedConversation.getReceiverId()==myId){
                                         intent.putExtra("interlucutorName",selectedConversation.getSenderName());
-                                        intent.putExtra("interlocutorId", receiverId);
+                                        intent.putExtra("interlocutorId", senderId);
 
                                     }
                                     else{
                                         intent.putExtra("interlucutorName",selectedConversation.getReceiverName());
-                                        intent.putExtra("interlocutorId", senderId);
+                                        intent.putExtra("interlocutorId", receiverId);
                                     }
                                     startActivity(intent);
                                 }

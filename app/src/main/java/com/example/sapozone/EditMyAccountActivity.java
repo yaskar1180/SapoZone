@@ -118,6 +118,7 @@ public class EditMyAccountActivity extends AppCompatActivity {
         }
     }
 
+    /*
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
@@ -129,11 +130,19 @@ public class EditMyAccountActivity extends AppCompatActivity {
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
         cursor.moveToFirst();
-        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+
+        String path = "";
+        if(cursor.getColumnIndex(MediaStore.Images.Media.DATA) >= 0){
+            path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+
+        }
         cursor.close();
 
         return path;
     }
+
+
+     */
 
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
