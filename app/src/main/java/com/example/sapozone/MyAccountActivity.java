@@ -43,6 +43,9 @@ public class MyAccountActivity extends AppCompatActivity {
         TextView firstnameTV = findViewById(R.id.profile_firstname);
         TextView lastnameTV = findViewById(R.id.profile_lastname);
         TextView phoneTV = findViewById(R.id.profile_phone);
+        TextView streetTV = findViewById(R.id.street);
+        TextView postalCodeTV = findViewById(R.id.postal_code);
+        TextView cityTV = findViewById(R.id.city);
         TextView bioTV = findViewById(R.id.profile_bio);
         ImageView pp_display = findViewById(R.id.profile_picture);
 
@@ -53,6 +56,9 @@ public class MyAccountActivity extends AppCompatActivity {
 
             usernameTV.setText(user.getUsername());
             emailTV.setText(user.getEmail());
+            streetTV.setText(user.getStreetnumber() + " " + user.getStreetname());
+            postalCodeTV.setText(user.getPostal_code());
+            cityTV.setText(user.getCity());
             firstnameTV.setText(user.getFirstname());
             phoneTV.setText(user.getPhonenumber());
             lastnameTV.setText(user.getLastname());

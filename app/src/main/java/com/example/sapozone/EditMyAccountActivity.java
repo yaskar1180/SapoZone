@@ -281,7 +281,7 @@ public class EditMyAccountActivity extends AppCompatActivity {
             jsonObject.put("lastname", lastnameTE.getText().toString());
             jsonObject.put("email", emailTE.getText().toString());
             jsonObject.put("phone_number", phoneTE.getText().toString());
-            jsonObject.put("street_number", streetNumberTE.getText().toString());
+            jsonObject.put("street_number", Integer.valueOf(streetNumberTE.getText().toString()));
             jsonObject.put("street_name", streetNameTE.getText().toString());
             jsonObject.put("city", cityTE.getText().toString());
             jsonObject.put("postal_code", postalCodeTE.getText().toString());
@@ -295,7 +295,7 @@ public class EditMyAccountActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://api-sapozone.herokuapp.com/users/"+id;
         int finalId = id;
-
+        System.out.println(jsonObject.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.PUT, url, jsonObject, new Response.Listener<JSONObject>() {
 

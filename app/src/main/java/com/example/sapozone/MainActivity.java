@@ -65,17 +65,16 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject user = response.getJSONObject(0);
                             String username = user.getString("username");
-                            String firstname = user.getString("firstname");
-                            String lastname = user.getString("lastname");
-                            String phonenumber = user.getString("phone_number");
+                            String firstname = user.optString("firstname", "");
+                            String lastname = user.optString("lastname", "");
+                            String phonenumber = user.optString("phone_number", "");
                             String email = user.getString("email");
-                            String streetnumber = user.getString("street_number");
-                            String streetname = user.getString("street_name");
-                            String city = user.getString("city");
-                            String postalcode = user.getString("postal_code");
-                            String bio = user.getString("bio");
-
-                            System.out.println(username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
+                            String streetnumber = user.optString("street_number", "");
+                            String streetname = user.optString("street_name", "");
+                            String city = user.optString("city", "");
+                            String postalcode = user.optString("postal_code", "");
+                            String bio = user.optString("bio", "");
+                            System.out.println("DONNEES RECUP : "+username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
                             HashMap<String,Object> account = new HashMap<String,Object>();
 
                             account.put("id", String.valueOf(finalId));
