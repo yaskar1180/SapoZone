@@ -14,6 +14,15 @@ public class Shop {
     private String name;
     private String phoneNumber;
     private String bio;
+    private String picture;
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     private String postalCode;
 
@@ -29,12 +38,13 @@ public class Shop {
     }
 
 
-    public Shop(int id, String name, String phoneNumber, String postalCode, String bio) {
+    public Shop(int id, String name, String phoneNumber, String postalCode, String bio,String pp) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.postalCode = postalCode;
         this.bio = bio;
+        this.picture = pp;
     }
 
     public String getName(){

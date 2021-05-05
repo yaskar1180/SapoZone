@@ -4,70 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="#E3E3E3"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="352dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/hint_password"
+        android:background="@color/primary_light"
         android:ems="10"
+        android:hint="Mot de passe"
         android:inputType="textPassword"
-        android:text="Mot de passe"
+        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="?attr/colorSecondary"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:autofillHints="@string/hint_username"
+        android:background="@color/primary_light"
         android:ems="10"
+        android:hint="Nom d'utilisateur"
         android:inputType="textPersonName"
-        android:text="Nom de compte"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="200dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="75dp"
         android:onClick="login"
         android:text="Se connecter"
-        app:backgroundTint="#3F51B5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="200dp"
-        android:layout_height="55dp"
-        android:onClick="register"
-        android:text="S'inscrire"
-        app:backgroundTint="#3F51B5"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.211" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="243dp"
-        android:layout_height="183dp"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        android:layout_width="250dp"
+        android:layout_height="190dp"
+        android:contentDescription="@string/logo_desc"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059"
         app:srcCompat="@drawable/logo" />
+
+    <ProgressBar
+        android:id="@+id/login_loader"
+        android:layout_width="284dp"
+        android:layout_height="51dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.90" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,15 +22,13 @@ import com.androidnetworking.AndroidNetworking;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
-public class Ajout_articleActivity extends AppCompatActivity {
+public class Add_ProductActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajout_article);
+        setContentView(R.layout.activity_add_product);
 
     }
 
@@ -97,11 +95,8 @@ public class Ajout_articleActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            // TODO: Handle error
-
                                             System.out.println(error.getMessage());
                                             System.out.println(error.getCause());
-
                                         }
                                     });
                             // Add the request to the RequestQueue.

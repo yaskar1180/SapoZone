@@ -2,7 +2,7 @@ package com.example.sapozone.data.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.example.sapozone.data.communication.Chat;
+
 import com.example.sapozone.data.shop.Quote;
 import com.example.sapozone.data.shop.Command;
 
@@ -45,12 +45,6 @@ public class  Account {
      */
     private ArrayList<String> AccountsAlreadyRated = new ArrayList<String>();
 
-    /**
-     * Stock all conversations
-     */
-    private HashMap<String, Chat> chats = new HashMap<String, Chat>();
-
-
 
     //--------------------------------   Shop
 
@@ -85,7 +79,6 @@ public class  Account {
         this.password = password;
         this.email = email;
     }
-
 
     public String getBio() {
         return bio;
@@ -165,7 +158,7 @@ public class  Account {
      * @param city
      * @param bio
      */
-    public Account(String username,String id, String password, String email, String phonenumber,  String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
+    public Account(String username,String id, String password, String email, String phonenumber, String firstname, String lastname, String streetname,String streetnumber, String postal_code, String city, String bio ) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -179,8 +172,6 @@ public class  Account {
         this.bio= bio;
         this.id=id;
         this.pp=pp;
-
-
     }
 
 
@@ -216,8 +207,6 @@ public class  Account {
         this.phonenumber = number;
     }
 
-
-
     public ArrayList<Integer> getRating() {
         return rating;
     }
@@ -232,14 +221,6 @@ public class  Account {
 
     public void setAccountsAlreadyRated(ArrayList<String> accountsAlreadyRated) {
         AccountsAlreadyRated = accountsAlreadyRated;
-    }
-
-    public HashMap<String, Chat> getChats() {
-        return chats;
-    }
-
-    public void setChats(HashMap<String, Chat> chats) {
-        this.chats = chats;
     }
 
     public HashMap<String, Command> getHistoric() {

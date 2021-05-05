@@ -25,7 +25,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Requete de prestation" />
+                android:text="Requete de prestation"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -40,15 +42,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Details" />
+                android:text="Details"
+                android:textColor="@color/primary_dark"
+                android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextPrestation_request_details"
+                android:id="@+id/requestdetails"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:gravity="start|top"
+                android:inputType="textMultiLine" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,8 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button"
-                android:onClick="validateRequest"/>
+                android:background="@color/primary_light"
+                android:onClick="validateRequest"
+                android:text="submit"
+                android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
