@@ -118,6 +118,7 @@ public class EditMyAccountActivity extends AppCompatActivity {
         }
     }
 
+    /*
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
@@ -139,6 +140,9 @@ public class EditMyAccountActivity extends AppCompatActivity {
 
         return path;
     }
+
+
+     */
 
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
