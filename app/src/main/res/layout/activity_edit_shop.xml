@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".EditShopActivity">
 
+
     <Button
         android:id="@+id/UploadStorePicture"
         android:layout_width="187dp"
