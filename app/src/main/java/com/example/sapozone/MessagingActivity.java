@@ -41,7 +41,10 @@ public class MessagingActivity extends AppCompatActivity {
 
     List<Message> messages = new ArrayList<Message>();
 
+    //TODO
     private ListView displayedMessages;
+
+
     private RequestQueue queue;
 
 
@@ -120,6 +123,9 @@ public class MessagingActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                // TODO: Handle error
+
+
                 System.out.println(error.getMessage()+"EST PAS OKKK");
                 System.out.println(error.getCause());
 
@@ -132,6 +138,7 @@ public class MessagingActivity extends AppCompatActivity {
     }
 
 
+    //TODO
     public void sendMessage(View view){
 
         EditText t = (EditText) findViewById(R.id.messageToSend);
@@ -165,6 +172,8 @@ public class MessagingActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
                         System.out.println(error.getMessage());
                         System.out.println(error.getCause());
 

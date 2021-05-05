@@ -95,8 +95,11 @@ public class Add_ProductActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
+                                            // TODO: Handle error
+
                                             System.out.println(error.getMessage());
                                             System.out.println(error.getCause());
+
                                         }
                                     });
                             // Add the request to the RequestQueue.
