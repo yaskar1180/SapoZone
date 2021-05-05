@@ -25,6 +25,8 @@ public class Database extends SQLiteOpenHelper {
     // Database name
     private static final String DATABASE_xNAME = "sapoZoneDB";
 
+
+
     //Table name
     public static final String ACCOUNT_TABLE = "ACCOUNT";
 
@@ -74,7 +76,9 @@ public class Database extends SQLiteOpenHelper {
 
             } else if (entry.getValue() instanceof Integer) {
                 values.put((String) entry.getKey(), (Integer) entry.getValue());
+
             }
+
         }
 
 

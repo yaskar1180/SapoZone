@@ -44,7 +44,10 @@ public class ConversationActivity extends AppCompatActivity {
 
     List<Conversation> conversations = new ArrayList<Conversation>();
 
+    //TODO
     private ListView displayedConversations;
+
+
     private String myId = "";
 
     @Override
@@ -145,6 +148,9 @@ public class ConversationActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
+                // TODO: Handle error
+
+
                 System.out.println(error.getMessage()+"EST PAS OKKK");
                 System.out.println(error.getCause());
 

@@ -25,9 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Requete de prestation"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:text="Requete de prestation" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,9 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Details"
-                android:textColor="@color/primary_dark"
-                android:textSize="18sp" />
+                android:text="Details" />
 
             <EditText
                 android:id="@+id/requestdetails"
@@ -69,10 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/primary_light"
                 android:onClick="validateRequest"
-                android:text="submit"
-                android:textColor="@color/black" />
+                android:text="submit" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
