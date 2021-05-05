@@ -26,7 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Bienvenue dans votres espage de gestion de magasin." />
+                android:text="Bienvenue dans votre espage de gestion de magasin."
+                android:textColor="@color/black"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -59,9 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="managePrestation"
                 android:text="Gerer mes prestations"
-                app:backgroundTint="#00BCD4"
-                android:onClick="managePrestation"/>
+                app:backgroundTint="@color/secondary_dark" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,9 +79,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="manageDevis"
                 android:text="Gerer mes devis"
-                app:backgroundTint="#F11717"
-                android:onClick="manageDevis"/>
+                android:textColor="@color/grey"
+                app:backgroundTint="@color/primary_dark" />
         </LinearLayout>
 
         <LinearLayout
@@ -95,9 +98,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="manageCommande"
                 android:text="Gerer mes commandes"
-                app:backgroundTint="#235925"
-                android:onClick="manageCommande"/>
+                app:backgroundTint="@color/primary_light" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_delete_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Supprimer votre magasin"
+                android:onClick="deleteShop"
+                app:backgroundTint="@color/secondary" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

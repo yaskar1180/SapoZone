@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             account.put("email",email);
 
             JSONObject jsonObject = new JSONObject();
+
             try {
                 jsonObject.put("username", username);
                 jsonObject.put("password", password);
@@ -91,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     Toast.makeText(getApplicationContext(), "Le compte a été créé avec succès.", Toast.LENGTH_SHORT).show();
+                    System.out.println("***** REPONSE *****" + response.toString());
                     startActivity(intent);
                 }
 
@@ -100,9 +102,8 @@ public class RegisterActivity extends AppCompatActivity {
                     String message = "An error has occured. Please try Again.";
                     JsonParser parser = new JsonParser();
                     JsonObject messageJson = (JsonObject) parser.parse(errorBody);
-                    if(messageJson.has("error")) {
+                    if(messageJson.has("error"))
                         message = messageJson.get("error").getAsString();
-                    }
                     emailET.setError(error.toString());
                     usernameET.setError(error.toString());
                     Log.e("REGISTER ERROR : ", String.valueOf(error.getErrorCode()));

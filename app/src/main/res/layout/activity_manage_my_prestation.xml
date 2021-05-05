@@ -60,9 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="addMyPrestation"
                 android:text="Ajouter une prestation"
-                app:backgroundTint="#CA1919"
-                android:onClick="addMyPrestation"/>
+                app:backgroundTint="@color/primary_light" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

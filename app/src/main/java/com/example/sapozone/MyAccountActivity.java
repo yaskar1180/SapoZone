@@ -34,35 +34,40 @@ public class MyAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         this.db = new Database(this);
+        setContentView(R.layout.activity_my_account);
 
-        ArrayList<Account> accounts = (ArrayList<Account>)db.getAllRows(Database.ACCOUNT_TABLE);
-
+        ArrayList<Account> accounts = (ArrayList<Account>) db.getAllRows(Database.ACCOUNT_TABLE);
         TextView usernameTV = findViewById(R.id.profile_username);
         TextView emailTV = findViewById(R.id.profile_email);
         TextView firstnameTV = findViewById(R.id.profile_firstname);
         TextView lastnameTV = findViewById(R.id.profile_lastname);
         TextView phoneTV = findViewById(R.id.profile_phone);
+        TextView streetTV = findViewById(R.id.street);
+        TextView postalCodeTV = findViewById(R.id.postal_code);
+        TextView cityTV = findViewById(R.id.city);
         TextView bioTV = findViewById(R.id.profile_bio);
         ImageView pp_display = findViewById(R.id.profile_picture);
 
-
-        if(accounts.size()!=0) {
+        if(accounts.size() != 0) {
             System.out.println(" account found");
-         Account user = accounts.get(0);
-        System.out.println(user.getEmail());
+            Account user = accounts.get(0);
+            System.out.println(user.getEmail());
 
-         usernameTV.setText(user.getUsername());
-         emailTV.setText(user.getEmail());
-         firstnameTV.setText(user.getFirstname());
-         phoneTV.setText(user.getPhonenumber());
-         lastnameTV.setText(user.getLastname());
-         bioTV.setText(user.getBio());
+            usernameTV.setText(user.getUsername());
+            emailTV.setText(user.getEmail());
+            streetTV.setText(user.getStreetnumber() + " " + user.getStreetname());
+            postalCodeTV.setText(user.getPostal_code());
+            cityTV.setText(user.getCity());
+            firstnameTV.setText(user.getFirstname());
+            phoneTV.setText(user.getPhonenumber());
+            lastnameTV.setText(user.getLastname());
+            bioTV.setText(user.getBio());
+        } else {
+            System.out.println("no account found");
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
-        else System.out.println("no account found");
 
         System.out.println("Requete de recuperation de l'image");
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -70,53 +75,45 @@ public class MyAccountActivity extends AppCompatActivity {
         String mImageURLString = "https://api-sapozone.herokuapp.com/"+sharedPref.getString("pp","");
         System.out.println("Requete de recuperation de l'image");
         ImageRequest imageRequest = new ImageRequest(
-                mImageURLString, // Image URL
-                new Response.Listener<Bitmap>() { // Bitmap listener
-                    @Override
-                    public void onResponse(Bitmap response) {
-                        System.out.println("retour de l'image");
-                        // Do something with response
-                        pp_display.setImageBitmap(response);
-                        /*
-                        // Save this downloaded bitmap to internal storage
-                        Uri uri = saveImageToInternalStorage(response);*/
+            mImageURLString, // Image URL
+            new Response.Listener<Bitmap>() { // Bitmap listener
+                @Override
+                public void onResponse(Bitmap response) {
+                    System.out.println("retour de l'image");
+                    // Do something with response
+                    pp_display.setImageBitmap(response);
+                    /*
+                    // Save this downloaded bitmap to internal storage
+                    Uri uri = saveImageToInternalStorage(response);*/
 
-                    }
-                },
-                500, // Image width
-                500, // Image height
-                ImageView.ScaleType.CENTER_CROP, // Image scale type
-                Bitmap.Config.RGB_565, //Image decode configuration
-                new Response.ErrorListener() { // Error listener
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("erreur lors du chargement de l'image");
-                        // Do something with error response
-                        error.printStackTrace();
-                        //   Snackbar.make(mCLayout,"Error",Snackbar.LENGTH_LONG).show();
-                    }
                 }
+            },
+            500, // Image width
+            500, // Image height
+            ImageView.ScaleType.CENTER_CROP, // Image scale type
+            Bitmap.Config.RGB_565, // Image decode configuration
+            new Response.ErrorListener() { // Error listener
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    System.out.println("erreur lors du chargement de l'image");
+                    // Do something with error response
+                    error.printStackTrace();
+                    // Snackbar.make(mCLayout,"Error",Snackbar.LENGTH_LONG).show();
+                }
+            }
         );
 
         // Add ImageRequest to the RequestQueue
         requestQueue.add(imageRequest);
-
-
-
     }
+
     public void edit(View view){
         Intent intent = new Intent(this, EditMyAccountActivity.class);
         startActivity(intent);
-
     }
+
     public void address(View view){
         Intent intent = new Intent(this, MyAddressActivity.class);
         startActivity(intent);
-
     }
-
-
-
-
-
 }
