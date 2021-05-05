@@ -125,9 +125,6 @@ public class StoreDetails extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO: Handle error
-
-
                 System.out.println(error.getMessage()+"EST PAS OKKK");
                 System.out.println(error.getCause());
 

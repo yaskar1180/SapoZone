@@ -33,11 +33,18 @@ public class MenuShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_shop);
 
-
+        // TODO: Requete pour savoir si y'a déjà une boutique
+        if(false) {
+            Intent intent = new Intent(this,StoreActivity.class);
+            // Start the activity
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, MyStoreManagement.class);
+            startActivity(intent);
+        }
     }
 
     public void ajoutShop(View view) {
-
         Intent intent = new Intent(this,StoreActivity.class);
         // Start the activity
         startActivity(intent);
@@ -46,13 +53,10 @@ public class MenuShopActivity extends AppCompatActivity {
     public void getTotalInfoShop(View view) {
         Intent intent = new Intent(this, MyStoreManagement.class);
         startActivity(intent);
-
     }
 
     public void manageShop(View view) {
         Intent intent = new Intent(this, MyStoreManagement.class);
         startActivity(intent);
     }
-
-
 }

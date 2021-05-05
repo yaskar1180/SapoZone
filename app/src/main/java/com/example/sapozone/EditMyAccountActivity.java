@@ -249,7 +249,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
                         System.out.println(error.getMessage());
                     }
                 });
@@ -343,7 +342,6 @@ public class EditMyAccountActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
                         System.out.println(error.getMessage());
                     }
                 });

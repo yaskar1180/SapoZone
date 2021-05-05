@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -94,6 +95,14 @@ public class MyStoreManagement extends AppCompatActivity {
         Intent intent = new Intent(this,QuotationManageActivity.class);
         // Start the activity
         startActivity(intent);
+    }
+
+    public void deleteShop(View view) {
+        // TODO: Delete shop
+        Intent intent = new Intent(this, StoreActivity.class);
+        // Start the activity
+        startActivity(intent);
+        Toast.makeText(this, "Your shop has been deleted.", Toast.LENGTH_SHORT).show();
     }
 
 }
