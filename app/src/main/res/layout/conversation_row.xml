@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_outer"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_inner"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            app:cardBackgroundColor="@color/primary_light"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                android:background="@drawable/icon">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="39dp"
+                        android:layout_height="18dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="131dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        tools:text="date" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2" />
+
+                    <TextView
+                        android:id="@+id/senderName"
+                        android:layout_width="66dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        tools:text="Envoyeur" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5" />
+
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5" />
+
+                    <Space
+                        android:layout_width="141dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="50dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/messageText"
+                        android:layout_width="270dp"
+                        android:layout_height="90dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        tools:text="Message" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
