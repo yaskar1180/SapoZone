@@ -65,8 +65,6 @@ public class RequestPrestationActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-
                         System.out.println(error.getMessage());
                         System.out.println(error.getCause());
 
