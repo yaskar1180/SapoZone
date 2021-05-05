@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -31,7 +30,7 @@ public class MyStoreManagement extends AppCompatActivity {
     }
 
     public void getTotalInfoShop(View view) {
-        System.out.println("acces a l'affichage du shop");
+    System.out.println("acces a l'affichage du shop");
         RequestQueue queue = Volley.newRequestQueue(this);
         Intent intent = new Intent(this,EditShopActivity.class);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -95,33 +94,6 @@ public class MyStoreManagement extends AppCompatActivity {
         Intent intent = new Intent(this,QuotationManageActivity.class);
         // Start the activity
         startActivity(intent);
-    }
-
-    public void deleteShop(View view) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        int id = 0;
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        id = sharedPref.getInt("idUser", id);
-        String url = "https://api-sapozone.herokuapp.com/stores/"+id;
-        System.out.println(url);
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
-                        // Start the activity
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Your shop has been deleted.", Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("STORE", "DELETE FAILED!");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
     }
 
 }

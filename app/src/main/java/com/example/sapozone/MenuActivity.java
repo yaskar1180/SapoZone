@@ -9,7 +9,6 @@ import com.android.volley.toolbox.StringRequest;
 
 import com.example.sapozone.adapters.ShopAdapter;
 import com.example.sapozone.data.shop.Shop;
-import com.example.sapozone.data.users.Account;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -56,13 +55,11 @@ public class MenuActivity extends AppCompatActivity {
     private SharedPreferences sharedPref = null;
     List<Shop> shops = new ArrayList<Shop>();
     private ListView displayedShops;
-    private com.example.sapozone.Database db = new com.example.sapozone.Database(this);
 
     @Override
     protected synchronized void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         setContentView(R.layout.activity_menu);
         this.displayedShops = findViewById(R.id.displayedShops);
@@ -127,18 +124,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        // check if logged
-        this.db = new Database(this);
-        ArrayList<Account> accounts = (ArrayList<Account>) db.getAllRows(Database.ACCOUNT_TABLE);
-        if(accounts.size() <= 0) {
-            Intent intentMain = new Intent(this, MainActivity.class);
-            startActivity(intentMain);
-        }
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -146,41 +131,18 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void disconnect(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        SharedPreferences.Editor editor = sharedPref.edit().clear();
+     Intent intent = new Intent(this, MainActivity.class);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
         editor.apply();
-        db.clearTable("account");
         startActivity(intent);
     }
 
     public boolean onStores(MenuItem item) {
 
-        /* Intent intent = new Intent(this, MenuShopActivity.class);
+        Intent intent = new Intent(this, MenuShopActivity.class);
         // Start the activity
-        startActivity(intent); */
-        RequestQueue queue = Volley.newRequestQueue(this);
-        int id = 0;
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        id = sharedPref.getInt("idUser", id);
-        String url = "https://api-sapozone.herokuapp.com/store/owner/"+id;
-        System.out.println(url);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Intent intent = new Intent(getApplicationContext(), MyStoreManagement.class);
-                        startActivity(intent);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        startActivity(intent);
         return true;
     }
 

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
         AndroidNetworking.initialize(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         this.sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int id = 0;
-        id = this.sharedPref.getInt("idUser", id);
+        id = sharedPref.getInt("idUser", id);
 
         if (id != 0){
             this.db.clearTable("account");
@@ -65,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject user = response.getJSONObject(0);
                             String username = user.getString("username");
-                            String firstname = user.optString("firstname", "");
-                            String lastname = user.optString("lastname", "");
-                            String phonenumber = user.optString("phone_number", "");
+                            String firstname = user.getString("firstname");
+                            String lastname = user.getString("lastname");
+                            String phonenumber = user.getString("phone_number");
                             String email = user.getString("email");
-                            String streetnumber = user.optString("street_number", "");
-                            String streetname = user.optString("street_name", "");
-                            String city = user.optString("city", "");
-                            String postalcode = user.optString("postal_code", "");
-                            String bio = user.optString("bio", "");
-                            System.out.println("DONNEES RECUP : "+username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
-                            HashMap<String,Object> account = new HashMap<String,Object>();
+                            String streetnumber = user.getString("street_number");
+                            String streetname = user.getString("street_name");
+                            String city = user.getString("city");
+                            String postalcode = user.getString("postal_code");
+                            String bio = user.getString("bio");
 
+                            System.out.println(username+","+finalId+","+firstname+","+lastname+","+phonenumber+","+email+","+streetname+","+city+","+postalcode+","+bio);
+                            HashMap<String,Object> account = new HashMap<String,Object>();
                             account.put("id", String.valueOf(finalId));
                             account.put("username",username);
                             account.put("email",email);
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             account.put("postalcode",postalcode);
                             account.put("bio",bio);
 
-                            db.addRow("account", account);
+                            db.addRow("account",account);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -107,12 +108,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        setContentView(R.layout.activity_accueil);
     }
 
     public void goToLogIn(View view) {
@@ -167,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
 
-                    int id = 0;
-
                     // Hide loader
                     ProgressBar loaderBar = (ProgressBar) findViewById(R.id.login_loader);
                     loaderBar.setVisibility(View.INVISIBLE);
@@ -176,18 +169,18 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(response.toString());
                     sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     SharedPreferences.Editor editor = sharedPref.edit();
+                    int id = 0;
 
                     try {
                         id = response.getInt("id");
-                        if (id != 0) {
-                            editor.putInt("idUser", id);
-                            editor.apply();
-                            startActivity(intent);
-                        }
                     } catch (JSONException e){
-                        System.out.println("something didnt work");
-                        usernameET.setError("Wrong set of login.");
-                        passwordET.setError("Wrong set of login");
+                        System.out.println("somthing didnt work");
+                    }
+
+                    if (id != 0) {
+                        editor.putInt("idUser", id);
+                        editor.apply();
+                        startActivity(intent);
                     }
                 }
 
