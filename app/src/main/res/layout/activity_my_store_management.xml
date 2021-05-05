@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Bienvenue dans votres espage de gestion de magasin."
+                android:text="Bienvenue dans votre espage de gestion de magasin."
                 android:textColor="@color/black"
                 android:textSize="18sp" />
         </LinearLayout>
