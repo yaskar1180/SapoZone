@@ -29,7 +29,14 @@
                 android:id="@+id/nav_request"
                 android:title="Mes demandes" />
 
+        <item android:title="Maps"
+            android:id="@+id/nav_maps"
+            android:onClick="onMaps"/>
+
+
+
         </menu>
     </item>
+
 
 </menu>

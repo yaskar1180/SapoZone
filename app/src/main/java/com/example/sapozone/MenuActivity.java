@@ -211,6 +211,11 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 
+    public void onMaps(MenuItem item) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
 
     private  void getAllShops(){
 
